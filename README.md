@@ -17,6 +17,6 @@ Has an option to be used as a logging Bot (logging_cog.py). If not using to log 
 - Lock/Unlock
 - ping 
 
-** A Rework of the Warn System may come soon**
+**A Rework of the Warn System may come soon**
 
 Created by **CubeZockii**
