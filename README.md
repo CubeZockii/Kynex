@@ -17,6 +17,8 @@ Has an option to be used as a logging Bot (logging_cog.py). If not using to log 
 - Lock/Unlock
 - ping 
 
+The Warn system has an automatic punishment system that takes action when a member reaches a certain Number of Warnings. U can change this later on for ur own server.
+
 **A Rework of the Warn System may come soon**
 
 Created by **CubeZockii**
