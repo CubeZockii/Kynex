@@ -1,7 +1,7 @@
 # Moderation-Bot
 
 A Moderation Bot that can be used for your Server.
-Has an option to be used as a logging Bot (logging_cog.py). If not using to log ignore the Error when starting the Bot "Fehler beim Laden von LoggingCog: Extension 'logging_cog' could not be loaded or found."
+Has an option to be used as a logging Bot (logging_cog.py). If not using to log ignore the Error when starting the Bot "Fehler beim Laden von LoggingCog: Extension 'logging_cog' could not be loaded or found." The Bot will still work normal but won´t log anything that is able to be logged.
 
 # Commands: 
 
