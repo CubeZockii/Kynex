@@ -1,1 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ModBot – Discord Moderation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #1e1e2f, #2a2a40);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    header h1 {
+      font-size: 3rem;
+      margin: 0.5rem 0;
+    }
+    header p {
+      font-size: 1.2rem;
+      color: #ccc;
+    }
+    .features {
+      max-width: 600px;
+      text-align: left;
+      margin-bottom: 3rem;
+    }
+    .features h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .features ul {
+      list-style: none;
+      padding: 0;
+    }
+    .features li::before {
+      content: "✔";
+      color: #4ade80;
+      margin-right: 0.5rem;
+    }
+    .features li {
+      margin: 0.5rem 0;
+      font-size: 1rem;
+    }
+    .note {
+      font-size: 0.9rem;
+      color: #aaa;
+      margin-top: 1rem;
+    }
+    .buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .buttons a {
+      text-decoration: none;
+      background: #4f46e5;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      color: white;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .buttons a:hover {
+      background: #4338ca;
+    }
 
+    .download-button {
+      background: #22c55e;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    .download-button:hover {
+      background: #16a34a;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>ModBot</h1>
+    <p>Smart Discord Moderation for your server</p>
+  </header>
+
+  <section class="features">
+    <h2>Features & Commands</h2>
+    <ul>
+      <li>Ban / Unban</li>
+      <li>Kick</li>
+      <li>Purge</li>
+      <li>Warn / Unwarn</li>
+      <li>Warnings overview</li>
+      <li>Automatic punishment system</li>
+      <li>Mute / Unmute</li>
+      <li>Lock / Unlock channels</li>
+      <li>Manage roles</li>
+      <li>Logging (optional)</li>
+      <li>Revive inactive chats</li>
+      <li>Ping & Help commands</li>
+    </ul>
+    <p class="note">
+      Note: If you're not using logging, you may see a startup error about <code>logging_cog</code>. This is normal – the bot still works fully without logging.
+    </p>
+  </section>
+
+  <div class="buttons">
+    <a href="https://discord.com/oauth2/authorize?client_id=1373826543742222377" target="_blank">✅ Invite ModBot</a>
+    <a href="#" target="_blank">📖 Documentation</a>
+    <a href="https://discord.gg/hxfWKdf2zD" target="_blank">🌐 Support Server</a>
+    <a href="https://moderationbot-data.onrender.com/download" class="download-button" target="_blank">⬇️ Download Bot Files</a>
+
+  </div>
+</body>
+</html>
