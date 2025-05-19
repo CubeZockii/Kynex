@@ -2,118 +2,103 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Moderation Bot Documentation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ModBot Documentation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
     body {
+      margin: 0;
       font-family: 'Inter', sans-serif;
-      max-width: 800px;
-      margin: 3rem auto;
-      padding: 0 1rem 4rem;
-      background: #f3f4f6;
-      color: #111827;
-      line-height: 1.7;
+      background: linear-gradient(135deg, #1e1e2f, #2a2a40);
+      color: #fff;
+      padding: 2rem;
+      line-height: 1.6;
     }
-    h1 {
-      color: #2563eb;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      border-bottom: 3px solid #3b82f6;
-      padding-bottom: 0.25rem;
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      margin: 0.5rem 0;
+    }
+    header p {
+      font-size: 1.2rem;
+      color: #ccc;
+    }
+    main {
+      max-width: 800px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 2rem;
+      border-radius: 12px;
     }
     h2 {
-      margin-top: 2.5rem;
-      color: #1e40af;
-      font-weight: 600;
-      border-bottom: 1px solid #bfdbfe;
-      padding-bottom: 0.2rem;
-    }
-    p {
-      margin-top: 1rem;
-      font-size: 1.1rem;
-      color: #374151;
+      color: #4ade80;
+      font-size: 1.8rem;
+      margin-top: 2rem;
     }
     ul {
-      list-style-type: disc;
-      margin-left: 1.5rem;
-      margin-top: 1rem;
-      color: #4b5563;
+      padding-left: 1.2rem;
     }
     li {
       margin: 0.5rem 0;
     }
     code {
-      background-color: #e0e7ff;
-      padding: 0.15rem 0.4rem;
+      background: #333;
+      padding: 0.2rem 0.4rem;
       border-radius: 4px;
-      font-family: 'Source Code Pro', monospace;
-      font-size: 0.95rem;
+      color: #fca5a5;
     }
-    em {
-      color: #6b7280;
-      font-style: italic;
-    }
-    strong {
-      color: #1e3a8a;
-    }
-    footer {
-      margin-top: 3rem;
-      font-size: 0.9rem;
-      color: #6b7280;
+    .footer {
       text-align: center;
-      border-top: 1px solid #d1d5db;
-      padding-top: 1rem;
-    }
-    a {
-      color: #2563eb;
-      text-decoration: none;
-      font-weight: 600;
-    }
-    a:hover {
-      text-decoration: underline;
+      margin-top: 4rem;
+      font-size: 0.9rem;
+      color: #aaa;
     }
   </style>
 </head>
 <body>
-  <h1>Moderation-Bot</h1>
+  <header>
+    <h1>ModBot Documentation</h1>
+    <p>All you need to know to use and host ModBot</p>
+  </header>
 
-  <p>
-    A Moderation Bot that can be used for your server. Has an option to be used as a logging bot (<code>logging_cog.py</code>).<br />
-    If not using logging, you can ignore the error when starting the bot:
-  </p>
-  <p><em>“Mistake at Laden von LoggingCog: Extension 'logging_cog' could not be loaded or found.”</em></p>
-  <p>
-    The bot will still work normally but won’t log anything that is able to be logged.
-  </p>
+  <main>
+    <p><strong>ModBot</strong> is a versatile moderation bot for Discord servers. You can use it as-is or self-host it.</p>
 
-  <h2>Features / Commands</h2>
-  <ul>
-    <li>Ban / Unban</li>
-    <li>Kick</li>
-    <li>Purge</li>
-    <li>Warn / Unwarn</li>
-    <li>Warnings</li>
-    <li>Revive</li>
-    <li>Role</li>
-    <li>Help</li>
-    <li>Mute / Unmute</li>
-    <li>Lock / Unlock</li>
-    <li>Ping</li>
-    <li>Logging</li>
-    <li>
-      <strong>Automatic Punishment System</strong><br />
-      The warn system includes an automatic punishment system that takes action when a member reaches a certain number of warnings.<br />
-      You can adjust this behavior for your own server.
-    </li>
-  </ul>
+    <h2>General Info</h2>
+    <p>The bot includes an optional logging system. If you choose not to use it, you may see a startup error like:</p>
+    <code>Mistake at Laden von LoggingCog: Extension 'logging_cog' could not be loaded or found.</code>
+    <p>This is safe to ignore.</p>
 
-  <p><em>A rework of the warn system may come soon.</em></p>
+    <h2>Features / Commands</h2>
+    <ul>
+      <li>Ban / Unban</li>
+      <li>Kick</li>
+      <li>Purge</li>
+      <li>Warn / Unwarn</li>
+      <li>Warnings overview</li>
+      <li>Automatic punishment system</li>
+      <li>Mute / Unmute</li>
+      <li>Lock / Unlock channels</li>
+      <li>Manage roles</li>
+      <li>Logging (optional)</li>
+      <li>Revive inactive chats</li>
+      <li>Ping & Help commands</li>
+    </ul>
 
-  <p><strong>Created by CubeZockii</strong></p>
+    <h2>Hosting Yourself</h2>
+    <p>You can self-host ModBot by downloading the source files on the HomePage and running them with Python. Make sure to install the required dependencies listed in <code>requirements.txt</code>.</p>
 
-  <footer>
-    &copy; 2025 CubeZockii
-  </footer>
+    <h2>Future Plans</h2>
+    <p>A rework of the warning system is planned to make it even more customizable.</p>
+
+    <p>Made with love by <strong>CubeZockii</strong></p>
+  </main>
+
+  <div class="footer">
+    <p>&copy; 2025 ModBot – All rights reserved</p>
+  </div>
 </body>
 </html>
