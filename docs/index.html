@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ModBot Documentation</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="">
   <style>
     body {
       margin: 0;
@@ -12,25 +13,25 @@
       background: linear-gradient(135deg, #1e1e2f, #2a2a40);
       color: #fff;
       padding: 2rem;
-      line-height: 1.6;
+      line-height: 1.7;
     }
     header {
       text-align: center;
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem;
     }
     header h1 {
       font-size: 2.5rem;
       margin: 0.5rem 0;
     }
     header p {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       color: #ccc;
     }
     main {
-      max-width: 800px;
+      max-width: 850px;
       margin: 0 auto;
       background: rgba(255, 255, 255, 0.03);
-      padding: 2rem;
+      padding: 2.5rem;
       border-radius: 12px;
     }
     h2 {
@@ -39,7 +40,7 @@
       margin-top: 2rem;
     }
     ul {
-      padding-left: 1.2rem;
+      padding-left: 1.5rem;
     }
     li {
       margin: 0.5rem 0;
@@ -56,47 +57,77 @@
       font-size: 0.9rem;
       color: #aaa;
     }
+    a {
+      color: #4ade80;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
   <header>
     <h1>ModBot Documentation</h1>
-    <p>All you need to know to use and host ModBot</p>
+    <p>Your guide to using and hosting the powerful ModBot for Discord</p>
   </header>
 
   <main>
-    <p><strong>ModBot</strong> is a versatile moderation bot for Discord servers. You can use it as-is or self-host it.</p>
+    <p><strong>ModBot</strong> is a powerful, flexible, and easy-to-use moderation bot designed to help keep your Discord server safe and well-managed. It includes a variety of essential moderation tools and can be self-hosted for full control and customization.</p>
 
-    <h2>General Info</h2>
-    <p>The bot includes an optional logging system. If you choose not to use it, you may see a startup error like:</p>
-    <code>Error loading LoggingCog: Extension 'logging_cog' could not be loaded or found.</code>
-    <p>This is safe to ignore.</p>
+    <h2>Getting Started</h2>
+    <p>To invite the hosted ModBot to your server, use this link:</p>
+    <p><a href="https://discord.com/oauth2/authorize?client_id=1373826543742222377" target="_blank">➕ Invite ModBot</a></p>
 
-    <h2>Features / Commands</h2>
+    <h2>Commands & Features</h2>
     <ul>
-      <li>Ban / Unban</li>
-      <li>Kick</li>
-      <li>Purge</li>
-      <li>Warn / Unwarn</li>
-      <li>Warnings overview</li>
-      <li>Automatic punishment system</li>
-      <li>Mute / Unmute</li>
-      <li>Lock / Unlock channels</li>
-      <li>Manage roles</li>
-      <li>Logging (optional)</li>
-      <li>Revive inactive chats</li>
-      <li>Ping & Help commands</li>
+      <li><strong>Ban / Unban</strong> – Permanently remove troublemakers</li>
+      <li><strong>Kick</strong> – Temporarily remove users from the server</li>
+      <li><strong>Purge</strong> – Bulk delete messages from a channel</li>
+      <li><strong>Warn / Unwarn</strong> – Issue warnings to users (with automatic punishment)</li>
+      <li><strong>Warnings</strong> – View a user's current warnings</li>
+      <li><strong>Mute / Unmute</strong> – Temporarily silence a user</li>
+      <li><strong>Lock / Unlock</strong> – Prevent or allow messages in a channel</li>
+      <li><strong>Role</strong> – Add or remove roles from users</li>
+      <li><strong>Help</strong> – Display a list of all commands</li>
+      <li><strong>Ping</strong> – Check the bot’s response time</li>
+      <li><strong>Revive</strong> – Ping users in a quiet chat to re-engage</li>
+      <li><strong>Logging (optional)</strong> – Track bans, mutes, deletes and more</li>
     </ul>
 
-    <h2>Hosting Yourself</h2>
-    <p>You can self-host ModBot by downloading the source files on the HomePage and running them with Python. Make sure to install the required dependencies listed in <code>requirements.txt</code>.</p>
+    <h2>Automatic Punishment System</h2>
+    <p>Warnings are tracked, and if a member reaches a configured threshold, the bot can automatically apply punishments like muting or banning. This system can be customized in the bot’s code to suit your moderation policy.</p>
 
-    <h2>Future Plans</h2>
-    <p>A rework of the warning system is planned to make it even more better.</p>
-    <p>It is planned that the rework will remove the numbering of warnings and replace them with something different that is unknown yet.</p>
-    <p>Then the slash command for unwarn will work with choosing the warning instead of putting the warn number. That means that every warning will be listed and u can choose the one u want to delete.</p>
+    <h2>Logging System (Optional)</h2>
+    <p>If the logging system is not needed, you may encounter this warning when starting the bot:</p>
+    <code>Error loading LoggingCog: Extension 'logging_cog' could not be loaded or found.</code>
+    <p>This is harmless and only indicates that logging won't be active.</p>
+    <p>If u don´t want this Error u need to delete <code>except Exception as e:
+        print(f"Error loading LoggingCog: {e}")</code> you can find this code at line <code>60-61</code>
+        after deleting the code the Error won´t show up.</p>
 
-    <p>Made with love by <strong>CubeZockii</strong></p>
+    <h2>Self-Hosting Instructions</h2>
+    <ol>
+      <li>Download the source files: <a href="../ModBot.zip" target="_blank">Download ZIP</a></li>
+      <li>Extract the ZIP and open a terminal in the folder</li>
+      <li>Install dependencies with: <code>pip install -r requirements.txt</code></li>
+      <li>Create a <code>.env</code> or <code>.json</code> file with your bot token and other config. (if needed)</li> 
+      <li>I recommend a <code>.json</code> file because the bot is coded with <code>.json</code></li>
+      <li>Run the bot with: <code>python bot.py</code></li>
+    </ol>
+    <p>For best results, host the bot using a cloud platform like <a href="https://katabump.com/en/" target="_blank">KataBump</a> or <a href="https://panel.sillydev.co.uk" target="_blank">SillyDev</a>.</p>
+
+    <h2>Planned Improvements</h2>
+    <ul>
+      <li>A new warning system with selectable warning history</li>
+      <li>Improved slash command support</li>
+      <li>Interactive components (buttons, modals) for faster actions</li>
+      <li>Modular configuration files for easier setup</li>
+    </ul>
+
+    <h2>Support & Contributions</h2>
+    <p>If you need help or want to suggest features, join the <a href="https://discord.gg/hxfWKdf2zD" target="_blank">Support Server</a>.</p>
+    <p>ModBot is proudly created and maintained by <strong>CubeZockii</strong>. Community feedback and contributions are welcome!</p>
   </main>
 
   <div class="footer">
