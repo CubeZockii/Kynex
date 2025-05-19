@@ -1,1 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Moderation Bot Documentation</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 700px;
+      margin: 2rem auto;
+      padding: 1rem 2rem;
+      line-height: 1.6;
+      background-color: #f9fafb;
+      color: #111827;
+    }
+    h1 {
+      color: #2563eb;
+      margin-bottom: 1rem;
+    }
+    h2 {
+      margin-top: 2rem;
+      color: #1e40af;
+    }
+    ul {
+      list-style: disc inside;
+      margin-left: 0;
+      padding-left: 1rem;
+    }
+    li {
+      margin: 0.5rem 0;
+    }
+    code {
+      background-color: #e0e7ff;
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-family: Consolas, monospace;
+      font-size: 0.95rem;
+    }
+    em {
+      color: #6b7280;
+      font-style: italic;
+    }
+    strong {
+      color: #1e3a8a;
+    }
+  </style>
+</head>
+<body>
+  <h1>Moderation-Bot</h1>
 
+  <p>
+    A Moderation Bot that can be used for your server. Has an option to be used as a logging bot (<code>logging_cog.py</code>).<br />
+    If not using logging, you can ignore the error when starting the bot:
+  </p>
+  <p><em>“Mistake at Laden von LoggingCog: Extension 'logging_cog' could not be loaded or found.”</em></p>
+  <p>
+    The bot will still work normally but won’t log anything that is able to be logged.
+  </p>
+
+  <h2>Features / Commands</h2>
+  <ul>
+    <li>Ban / Unban</li>
+    <li>Kick</li>
+    <li>Purge</li>
+    <li>Warn / Unwarn</li>
+    <li>Warnings</li>
+    <li>Revive</li>
+    <li>Role</li>
+    <li>Help</li>
+    <li>Mute / Unmute</li>
+    <li>Lock / Unlock</li>
+    <li>Ping</li>
+    <li>Logging</li>
+    <li>
+      <strong>Automatic Punishment System</strong><br />
+      The warn system includes an automatic punishment system that takes action when a member reaches a certain number of warnings.<br />
+      You can adjust this behavior for your own server.
+    </li>
+  </ul>
+
+  <p><em>A rework of the warn system may come soon.</em></p>
+
+  <p><strong>Created by CubeZockii</strong></p>
+</body>
+</html>
