@@ -51,7 +51,7 @@ activity_types = itertools.cycle([
 
 @bot.event
 async def on_ready():
-    ascii_banner = pyfiglet.figlet_format("Oceanic City Security", font="slant")
+    ascii_banner = pyfiglet.figlet_format("YOUR_BOT_NAME", font="slant")
     print(ascii_banner)
 
     # Versuch, die Logging-Erweiterung zu laden
