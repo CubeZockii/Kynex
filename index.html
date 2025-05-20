@@ -14,7 +14,6 @@
       margin: 0;
       padding: 0;
     }
-
     body {
       font-family: 'Inter', sans-serif;
       height: 100vh;
@@ -159,23 +158,18 @@
       position: fixed;
       top: 1rem;
       left: 1rem;
-      background: rgba(59, 59, 80, 0.9);
-      border-radius: 8px;
-      color: #fff;
-      font-size: 1.25rem;
-      padding: 0.5rem 0.75rem;
+      background: #3b3b50;
       border: none;
+      color: #fff;
+      font-size: 1.5rem;
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
       z-index: 1001;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.5);
     }
 
     @media (max-width: 768px) {
       body {
         flex-direction: column;
-      }
-
-      .menu-toogle {
-        display: block;
       }
 
       .sidebar {
@@ -184,8 +178,7 @@
         left: 0;
         height: 100%;
         transform: translateX(-100%);
-        z-index: 1000;
-        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+        z-index: 999;
       }
 
       .sidebar.active {
@@ -197,7 +190,7 @@
       }
 
       .main {
-        padding: 4rem;
+        padding: 1rem;
       }
 
       .card ul {
@@ -254,8 +247,7 @@
 
   <script>
     function toggleSidebar() {
-      const sidebar = document.getElementById('sidebar');
-      sidebar.classList.toggle('active');
+      document.getElementById('sidebar').classList.toggle('active');
     }
   </script>
 </body>
