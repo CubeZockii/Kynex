@@ -16,13 +16,13 @@
     }
     body {
       font-family: 'Inter', sans-serif;
-      display: flex;
       height: 100vh;
       background: #1f1f2e;
       color: #e5e7eb;
+      display: flex;
+      flex-direction: row;
     }
 
-    /* Sidebar */
     .sidebar {
       width: 240px;
       background-color: #2a2a3f;
@@ -30,6 +30,7 @@
       display: flex;
       flex-direction: column;
       gap: 2rem;
+      transition: transform 0.3s ease-in-out;
     }
 
     .sidebar h1 {
@@ -66,6 +67,7 @@
       flex: 1;
       padding: 2rem;
       overflow-y: auto;
+      position: relative;
     }
 
     .header {
@@ -151,16 +153,46 @@
       background-color: #16a34a;
     }
 
+    .menu-toggle {
+      display: none;
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: #3b3b50;
+      border: none;
+      color: #fff;
+      font-size: 1.5rem;
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+      z-index: 10;
+    }
+
     @media (max-width: 768px) {
-      .sidebar {
-        display: none;
-      }
       body {
         flex-direction: column;
       }
+
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        transform: translateX(-100%);
+        z-index: 9;
+      }
+
+      .sidebar.active {
+        transform: translateX(0);
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
       .main {
         padding: 1rem;
       }
+
       .card ul {
         columns: 1;
       }
@@ -168,7 +200,11 @@
   </style>
 </head>
 <body>
-  <aside class="sidebar">
+  <button class="menu-toggle" onclick="toggleSidebar()">
+    <i class="fas fa-bars"></i>
+  </button>
+
+  <aside class="sidebar" id="sidebar">
     <h1>ModBot</h1>
     <nav class="nav-links">
       <a href="docs/index.html"><i class="fas fa-book-open"></i>Documentation</a>
@@ -208,5 +244,11 @@
       <a href="ModBot.zip" class="download" target="_blank"><i class="fas fa-download"></i>Download Bot Files</a>
     </div>
   </main>
+
+  <script>
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('active');
+    }
+  </script>
 </body>
 </html>
