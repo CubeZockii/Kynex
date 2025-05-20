@@ -4,65 +4,36 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ModBot Documentation</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="icon" href="../ModBot.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="../ModBot.png" type="image/png" />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
-    body {
+    * {
+      box-sizing: border-box;
       margin: 0;
+      padding: 0;
+    }
+    body {
       font-family: 'Inter', sans-serif;
-      background: linear-gradient(135deg, #1e1e2f, #2a2a40);
-      color: #fff;
-      padding: 2rem;
-      line-height: 1.7;
+      display: flex;
+      height: 100vh;
+      background: #1f1f2e;
+      color: #e5e7eb;
     }
-    header {
+    .sidebar {
+      width: 240px;
+      background-color: #2a2a3f;
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    .sidebar h1 {
+      font-size: 1.75rem;
+      color: #6366f1;
+      text-shadow: 0 2px 6px rgba(99, 102, 241, 0.5);
       text-align: center;
-      margin-bottom: 2.5rem;
-    }
-    header h1 {
-      font-size: 2.5rem;
-      margin: 0.5rem 0;
-    }
-    header p {
-      font-size: 1.1rem;
-      color: #ccc;
-    }
-    main {
-      max-width: 850px;
-      margin: 0 auto;
-      background: rgba(255, 255, 255, 0.03);
-      padding: 2.5rem;
-      border-radius: 12px;
-    }
-    h2 {
-      color: #4ade80;
-      font-size: 1.8rem;
-      margin-top: 2rem;
-    }
-    ul {
-      padding-left: 1.5rem;
-    }
-    li {
-      margin: 0.5rem 0;
-    }
-    code {
-      background: #333;
-      padding: 0.2rem 0.4rem;
-      border-radius: 4px;
-      color: #fca5a5;
-    }
-    .footer {
-      text-align: center;
-      margin-top: 4rem;
-      font-size: 0.9rem;
-      color: #aaa;
-    }
-    .note {
-      font-size: 1.0rem;
-      color: #888b96;
-      margin-top: 1.25rem;
-      font-style: italic;
-      user-select: text;
     }
     a {
       color: #4ade80;
@@ -71,75 +42,221 @@
     a:hover {
       text-decoration: underline;
     }
+    .nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #cbd5e1;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      background-color: #3b3b50;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      transition: background 0.2s;
+    }
+    .nav-links a:hover {
+      background-color: #4f46e5;
+      color: #fff;
+    }
+    .main {
+      flex: 1;
+      padding: 2rem;
+      overflow-y: auto;
+    }
+    .header {
+      margin-bottom: 2rem;
+    }
+    .header h2 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      color: #818cf8;
+    }
+    .header p {
+      font-size: 1.1rem;
+      color: #a1a1aa;
+    }
+    .card {
+      background-color: #292d3c;
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .card h3 {
+      font-size: 1.5rem;
+      color: #4ade80;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid #6366f1;
+      padding-bottom: 0.5rem;
+    }
+    .card ul {
+      list-style: none;
+      padding-left: 0;
+      columns: 2;
+      column-gap: 2rem;
+    }
+    .card li {
+      margin: 0.5rem 0;
+    }
+    .card li::before {
+      content: "✔";
+      color: #4ade80;
+      margin-right: 0.5rem;
+    }
+    code {
+      background: #333;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      color: #fca5a5;
+    }
+    .note {
+      font-size: 1.0rem;
+      color: #888b96;
+      margin-top: 1.25rem;
+      font-style: italic;
+      user-select: text;
+    }
+    .button-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .button-grid a {
+      background: #6366f1;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      color: #fff;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.5);
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .button-grid a:hover {
+      background: #4f46e5;
+    }
+    .button-grid .download {
+      background-color: #22c55e;
+      box-shadow: 0 4px 12px rgba(34, 197, 94, 0.5);
+    }
+    .button-grid .download:hover {
+      background-color: #16a34a;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+    @media (max-width: 768px) {
+      .sidebar {
+        display: none;
+      }
+      body {
+        flex-direction: column;
+      }
+      .main {
+        padding: 1rem;
+      }
+      .card ul {
+        columns: 1;
+      }
+    }
   </style>
 </head>
 <body>
-  <header>
-    <h1>ModBot Documentation</h1>
-    <p>Your guide to using and hosting the powerful ModBot for Discord</p>
-  </header>
+  <aside class="sidebar">
+    <h1>ModBot</h1>
+    <nav class="nav-links">
+      <a href="https://cubezockii.github.io/ModBot/"><i class="fas fa-home"></i> Home</a>
+      <a href="https://discord.gg/hxfWKdf2zD" target="_blank"><i class="fab fa-discord"></i> Support Server</a>
+    </nav>
+  </aside>
 
-  <main>
-    <p><strong>ModBot</strong> is a powerful, flexible, and easy-to-use moderation bot designed to help keep your Discord server safe and well-managed. It includes a variety of essential moderation tools and can be self-hosted for full control and customization.</p>
+  <main class="main">
+    <div class="header">
+      <h2>ModBot Documentation</h2>
+      <p>Your guide to using and hosting the powerful ModBot for Discord</p>
+    </div>
 
-    <h2>Getting Started</h2>
-    <p>To invite the hosted ModBot to your server, use this link:</p>
-    <p><a href="https://discord.com/oauth2/authorize?client_id=1373826543742222377" target="_blank">➕ Invite ModBot</a></p>
+    <section class="card">
+      <h3>Getting Started</h3>
+      <p>To invite the hosted ModBot to your server, use this link:</p>
+      <div class="button-grid">
+      <a href="https://discord.com/oauth2/authorize?client_id=1373826543742222377" target="_blank"><i class="fas fa-plus"></i>Invite ModBot</a>
+      </div>
+    </section>
 
-    <h2>Commands & Features</h2>
-    <ul>
-      <li><strong>Ban / Unban</strong> – Permanently remove troublemakers</li>
-      <li><strong>Kick</strong> – Temporarily remove users from the server</li>
-      <li><strong>Purge</strong> – Bulk delete messages from a channel</li>
-      <li><strong>Warn / Unwarn</strong> – Issue warnings to users (with automatic punishment)</li>
-      <li><strong>Warnings</strong> – View a user's current warnings</li>
-      <li><strong>Mute / Unmute</strong> – Temporarily silence a user</li>
-      <li><strong>Lock / Unlock</strong> – Prevent or allow messages in a channel</li>
-      <li><strong>Role</strong> – Add or remove roles from users</li>
-      <li><strong>Help</strong> – Display a list of all commands</li>
-      <li><strong>Ping</strong> – Check the bot’s response time</li>
-      <li><strong>Revive</strong> – Ping users in a quiet chat to re-engage</li>
-      <li><strong>Logging (optional)</strong> – Track bans, mutes, deletes and more</li>
-    </ul>
+    <section class="card">
+      <h3>Commands & Features</h3>
+      <ul>
+        <li>Ban / Unban</li>
+        <li>Kick</li>
+        <li>Purge</li>
+        <li>Warn / Unwarn</li>
+        <li>Warnings overview</li>
+        <li>Automatic punishment system</li>
+        <li>Mute / Unmute</li>
+        <li>Lock / Unlock channels</li>
+        <li>Manage roles</li>
+        <li>Help & Ping</li>
+        <li>Revive inactive chats</li>
+        <li>Optional Logging System</li>
+      </ul>
+    </section>
 
-    <h2>Automatic Punishment System</h2>
-    <p>Warnings are tracked, and if a member reaches a configured threshold, the bot can automatically apply punishments like muting or banning. This system can be customized in the bot’s code to suit your moderation policy.</p>
+    <section class="card">
+      <h3>Automatic Punishment</h3>
+      <p>Warnings are tracked. If a user hits a threshold, ModBot can automatically mute or ban them. You can customize this logic in the code.</p>
+    </section>
 
-    <h2>Logging System (Optional)</h2>
-    <p>If the logging system is not needed, you may encounter this warning when starting the bot:</p>
-    <code>Error loading LoggingCog: Extension 'logging_cog' could not be loaded or found.</code>
-    <p>This is harmless and only indicates that logging won't be active.</p>
-    <p>If u don´t want this Error u need to delete <code>except Exception as e:
-        print(f"Error loading LoggingCog: {e}")</code> you can find this code at line <code>60-61</code>
-        after deleting the code the Error won´t show up.</p>
+    <section class="card">
+      <h3>Logging System</h3>
+      <p>If unused, you may see:</p>
+      <code>Error loading LoggingCog: Extension 'logging_cog' could not be loaded or found.</code>
+      <p>To remove this, delete the error handling code at lines <code>60-61</code>.</p>
+    </section>
 
-    <h2>Self-Hosting Instructions</h2>
-    <ol>
-      <li>Download the source files: <a href="../ModBot.zip" target="_blank">Download ZIP</a></li>
-      <li>Extract the ZIP and open a terminal in the folder</li>
-      <li>Install dependencies with: <code>pip install -r requirements.txt</code></li>
-      <li>Create a <code>.env</code> or <code>.json</code> file with your bot token and other config. (if needed)</li> 
-      <li>I recommend a <code>.json</code> file because the bot is coded with <code>.json</code></li>
-      <li>Run the bot with: <code>python bot.py</code></li>
-    </ol>
-    <p>For best results, host the bot using a Host platform like <a href="https://katabump.com/en/" target="_blank">KataBump</a> or <a href="https://sillydev.co.uk/" target="_blank">SillyDev</a>.</p>
-    <p class="note"> Note: Download the Files if u want to customize the Bot ur own, recode it or add more Features and Commands otherwise just invite the Bot.</p>
+    <section class="card">
+      <h3>Self-Hosting</h3>
+      <ol>
+        <div class="button-grid">
+        <li><a href="../ModBot.zip" class="download" target="_blank"><i class="fas fa-download"></i>Download ZIP</a></li>
+        </div>
+        <li>Extract ZIP & open terminal in folder</li>
+        <li><code>pip install -r requirements.txt</code></li>
+        <li>Configure token via <code>.json</code> or <code>.env</code></li>
+        <li><code>python bot.py</code></li>
+      </ol>
+      <p class="note">Recommended hosts: <a href="https://katabump.com/en/" target="_blank">KataBump</a>, <a href="https://sillydev.co.uk/" target="_blank">SillyDev</a>.</p>
+    </section>
 
-    <h2>Planned Improvements</h2>
-    <ul>
-      <li>A new warning system with selectable warning history</li>
-      <li>Improved slash command support</li>
-      <li>Interactive components (buttons, modals) for faster actions</li>
-      <li>Modular configuration files for easier setup</li>
-    </ul>
+    <section class="card">
+      <h3>Planned Improvements</h3>
+      <ul>
+        <li>Warning history UI</li>
+        <li>Improved slash commands</li>
+        <li>Buttons & modals</li>
+        <li>Config file rework</li>
+      </ul>
+    </section>
 
-    <h2>Support & Contributions</h2>
-    <p>If you need help or want to suggest features, join the <a href="https://discord.gg/hxfWKdf2zD" target="_blank">Support Server</a>.</p>
-    <p>ModBot is proudly created and maintained by <strong>CubeZockii</strong>. Community feedback and contributions are welcome!</p>
+    <section class="card">
+      <h3>Support</h3>
+      <p>Need help or want to contribute? Join the Support Server.</p>
+      <p>Made by <strong>CubeZockii</strong> – Contributions welcome!</p>
+    </section>
+
+    <div class="footer">
+      <p>&copy; 2025 ModBot – All rights reserved</p>
+    </div>
   </main>
-
-  <div class="footer">
-    <p>&copy; 2025 ModBot – All rights reserved</p>
-  </div>
 </body>
 </html>
