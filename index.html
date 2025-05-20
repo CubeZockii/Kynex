@@ -168,31 +168,28 @@
     }
 
     @media (max-width: 768px) {
-      body {
-        flex-direction: column;
-      }
-
       .sidebar {
         position: fixed;
+        left: -100%;
         top: 0;
-        left: 0;
+        bottom: 0;
         height: 100%;
-        transform: translateX(-100%);
+        transition: left 0.3s ease;
         z-index: 999;
       }
-
       .sidebar.active {
-        transform: translateX(0);
+        left: 0;
       }
-
       .menu-toggle {
         display: block;
       }
-
+      body {
+        flex-direction: column;
+      }
       .main {
         padding: 1rem;
+        margin-top: 3rem;
       }
-
       .card ul {
         columns: 1;
       }
