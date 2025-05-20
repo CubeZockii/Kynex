@@ -16,10 +16,10 @@
     }
     body {
       font-family: 'Inter', sans-serif;
-      display: flex;
-      height: 100vh;
       background: #1f1f2e;
       color: #e5e7eb;
+      display: flex;
+      min-height: 100vh;
     }
     .sidebar {
       width: 240px;
@@ -34,13 +34,6 @@
       color: #6366f1;
       text-shadow: 0 2px 6px rgba(99, 102, 241, 0.5);
       text-align: center;
-    }
-    a {
-      color: #4ade80;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
     }
     .nav-links {
       display: flex;
@@ -72,20 +65,12 @@
     }
     .header h2 {
       font-size: 2rem;
-      margin-bottom: 0.5rem;
       color: #818cf8;
+      margin-bottom: 0.5rem;
     }
     .header p {
       font-size: 1.1rem;
       color: #a1a1aa;
-    }
-    .card code {
-      font-style: italic;
-      color: #fca5a5;
-      background: #333;
-      padding: 0.2rem 0.4rem;
-      border-radius: 4px;
-      display: inline-block;
     }
     .card {
       background-color: #292d3c;
@@ -114,6 +99,14 @@
       content: "✔";
       color: #4ade80;
       margin-right: 0.5rem;
+    }
+    .card code {
+      font-style: italic;
+      color: #fca5a5;
+      background: #333;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      display: inline-block;
     }
     .note {
       font-size: 1.0rem;
@@ -157,15 +150,42 @@
       font-size: 0.9rem;
       color: #aaa;
     }
+    .menu-toggle {
+      display: none;
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      background: #3b3b50;
+      padding: 0.5rem;
+      border-radius: 8px;
+      z-index: 1000;
+      color: #fff;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
     @media (max-width: 768px) {
       .sidebar {
-        display: none;
+        position: fixed;
+        left: -100%;
+        top: 0;
+        bottom: 0;
+        height: 100%;
+        transition: left 0.3s ease;
+        z-index: 999;
+      }
+      .sidebar.active {
+        left: 0;
+      }
+      .menu-toggle {
+        display: block;
       }
       body {
         flex-direction: column;
       }
       .main {
         padding: 1rem;
+        margin-top: 3rem;
       }
       .card ul {
         columns: 1;
@@ -174,7 +194,11 @@
   </style>
 </head>
 <body>
-  <aside class="sidebar">
+  <div class="menu-toggle" onclick="toggleMenu()">
+    <i class="fas fa-bars"></i>
+  </div>
+
+  <aside class="sidebar" id="sidebar">
     <h1>ModBot</h1>
     <nav class="nav-links">
       <a href="../index.html"><i class="fas fa-home"></i> Home</a>
@@ -192,7 +216,7 @@
       <h3>Getting Started</h3>
       <p>To invite the hosted ModBot to your server, use this link:</p>
       <div class="button-grid">
-      <a href="https://discord.com/oauth2/authorize?client_id=1373826543742222377" target="_blank"><i class="fas fa-plus"></i>Invite ModBot</a>
+        <a href="https://discord.com/oauth2/authorize?client_id=1373826543742222377" target="_blank"><i class="fas fa-plus"></i>Invite ModBot</a>
       </div>
     </section>
 
@@ -230,7 +254,7 @@
       <h3>Self-Hosting</h3>
       <ol>
         <div class="button-grid">
-        <li><a href="../ModBot.zip" class="download" target="_blank"><i class="fas fa-download"></i>Download ZIP</a></li>
+          <li><a href="../ModBot.zip" class="download" target="_blank"><i class="fas fa-download"></i>Download ZIP</a></li>
         </div>
         <li>Extract ZIP & open terminal in folder</li>
         <li><code>pip install -r requirements.txt</code></li>
@@ -260,5 +284,11 @@
       <p>&copy; 2025 ModBot – All rights reserved</p>
     </div>
   </main>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('sidebar').classList.toggle('active');
+    }
+  </script>
 </body>
 </html>
