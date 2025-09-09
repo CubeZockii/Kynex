@@ -9,13 +9,16 @@ A Moderation Bot that can be used for your Server. Has an option to be used as a
 - Purge
 - Warn/Unwarn
 - Warnings
-- revive
 - role
 - help
 - Mute/Unmute
 - Lock/Unlock
 - ping
 - Logging
-- Automatic Punishment System
+- Automatic Message Moderation System
+- setup log/error channel
+- show current prefix
+- change prefix for server
+- setup alert channel
 
 Created by **CubeZockii**
