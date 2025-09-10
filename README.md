@@ -1,6 +1,6 @@
 # Moderation-Bot
 
-A Moderation Bot that can be used for your Server. Has an option to be used as a Logging Bot.
+A Moderation Bot that can be used for your Server. It also can be used for Logging all events (ex. changing role permissions).
 
 # Features/Commands:
 
