@@ -1,358 +1,380 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ModBot Documentation</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="icon" href="../ModBot.png" type="image/png" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <style>
-    /* Basic Resets and Global Styles */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ModBot Documentation</title>
+    <link rel="icon" href="../ModBot.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Lexend:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --sidebar-bg: #161b22;
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --border-color: rgba(139, 148, 158, 0.2);
+            --accent-color: #22c55e;
+            --code-bg: #010409;
+        }
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: #111827;
-      color: #e5e7eb;
-      display: flex;
-      min-height: 100vh;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    a {
-      color: #818cf8;
-      text-decoration: none;
-    }
+        body {
+            font-family: 'Lexend', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+        }
 
-    a:hover {
-      text-decoration: underline;
-    }
-    
-    /* Sidebar */
-    .sidebar {
-      width: 250px;
-      background-color: #1f2937;
-      padding: 2.5rem 1.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 2.5rem;
-      transition: transform 0.3s ease-in-out;
-      border-right: 1px solid #374151;
-      flex-shrink: 0;
-    }
+        .docs-container {
+            display: flex;
+            height: 100vh;
+        }
 
-    .sidebar h1 {
-      font-size: 1.75rem;
-      color: #818cf8;
-      text-shadow: 0 2px 8px rgba(129, 140, 248, 0.25);
-      text-align: center;
-      font-weight: 700;
-    }
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 260px;
+            background-color: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+            padding: 2rem;
+            flex-shrink: 0;
+            overflow-y: auto;
+        }
 
-    .nav-links {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
+        .sidebar-header {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .sidebar-header a {
+            color: var(--text-primary);
+            text-decoration: none;
+        }
 
-    .nav-links a {
-      text-decoration: none;
-      color: #d1d5db;
-      padding: 0.85rem 1.25rem;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      font-weight: 600;
-      transition: all 0.2s ease;
-    }
+        .sidebar-nav ul {
+            list-style: none;
+        }
+        
+        .sidebar-nav h4 {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 1.5rem 0 0.5rem;
+        }
 
-    .nav-links a:hover, .nav-links a.active {
-      background-color: #4338ca;
-      color: #fff;
-      transform: translateX(5px);
-      text-decoration: none;
-    }
-    
-    .nav-links a i {
-        width: 20px;
-    }
+        .sidebar-nav a {
+            display: block;
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 0.5rem 0;
+            border-radius: 5px;
+            transition: color 0.2s ease, background-color 0.2s ease;
+        }
 
-    /* Main Content */
-    .main {
-      flex: 1;
-      padding: 2.5rem;
-      overflow-y: auto;
-    }
+        .sidebar-nav a:hover, .sidebar-nav a.active {
+            color: var(--accent-color);
+        }
 
-    .header {
-      margin-bottom: 2.5rem;
-    }
-    
-    .header h2 {
-        font-size: 2.25rem;
-        font-weight: 700;
-        color: #f9fafb;
-    }
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 3rem 4rem;
+            overflow-y: auto;
+        }
 
-    .header p {
-      font-size: 1.1rem;
-      color: #9ca3af;
-      margin-top: 0.25rem;
-    }
+        .main-content h1, .main-content h2, .main-content h3 {
+            font-family: 'Poppins', sans-serif;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
 
-    /* Card Style */
-    .card {
-      background-color: #1f2937;
-      border-radius: 16px;
-      padding: 2rem;
-      margin-bottom: 2rem;
-      border: 1px solid #374151;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-    }
+        .main-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
 
-    .card h3 {
-      font-size: 1.5rem;
-      color: #a5b4fc;
-      margin-bottom: 1.5rem;
-      border-bottom: 1px solid #4f46e5;
-      padding-bottom: 1rem;
-    }
+        .main-content h2 {
+            font-size: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .main-content h3 {
+             font-size: 1.5rem;
+             margin-top: 2.5rem;
+             border-bottom: none;
+        }
 
-    .card ul {
-      list-style: none;
-      padding-left: 0;
-      columns: 2;
-      column-gap: 2rem;
-    }
+        .main-content p, .main-content li {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 1.05rem;
+            margin-bottom: 1rem;
+        }
+        
+        .main-content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .main-content a:hover {
+            text-decoration: underline;
+        }
+        
+        .main-content ul, .main-content ol {
+            padding-left: 1.5rem;
+        }
+        
+        /* Code Blocks */
+        pre {
+            background-color: var(--code-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+        
+        code {
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            background-color: rgba(139, 148, 158, 0.15);
+            padding: 0.2rem 0.4rem;
+            border-radius: 5px;
+            font-size: 0.95rem;
+        }
+        
+        pre code {
+            background: none;
+            padding: 0;
+            font-size: 1rem;
+        }
+        
+        .note {
+            background-color: rgba(35, 134, 54, 0.1);
+            border-left: 4px solid var(--accent-color);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .note p {
+            margin: 0;
+            color: #cdd9e5;
+        }
 
-    .card li {
-      margin-bottom: 0.75rem;
-      display: flex;
-      align-items: center;
-    }
+        /* Responsive */
+        .menu-toggle { display: none; }
+        
+        @media (max-width: 1024px) {
+            .main-content { padding: 2rem; }
+        }
 
-    .card li::before {
-      content: "✔";
-      color: #34d399;
-      margin-right: 0.75rem;
-      font-size: 1.1rem;
-    }
-    
-    /* Special style for the roadmap list */
-    .roadmap-list li::before {
-        content: "✨";
-        color: #a5b4fc;
-    }
-
-    .card ol {
-      padding-left: 1.5rem;
-    }
-    .card ol li {
-        margin-bottom: 1rem;
-        align-items: normal;
-    }
-
-    .card code {
-      font-family: 'Courier New', Courier, monospace;
-      color: #e5e7eb;
-      background: #111827;
-      padding: 0.2rem 0.5rem;
-      border-radius: 6px;
-      font-size: 0.9rem;
-      border: 1px solid #374151;
-    }
-
-    .note {
-      font-size: 0.9rem;
-      color: #9ca3af;
-      margin-top: 1.5rem;
-      font-style: italic;
-      background-color: rgba(55, 65, 81, 0.3);
-      padding: 1rem;
-      border-radius: 8px;
-    }
-
-    /* Button Grid */
-    .button-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-top: 1.5rem;
-    }
-
-    .button-grid a {
-      background: #6366f1;
-      padding: 0.85rem 1.75rem;
-      border-radius: 8px;
-      color: #fff;
-      font-weight: 600;
-      text-decoration: none;
-      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.3);
-      transition: all 0.2s ease-in-out;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .button-grid a:hover {
-      background: #4f46e5;
-      transform: translateY(-3px);
-      box-shadow: 0 7px 20px rgba(99, 102, 241, 0.4);
-      text-decoration: none;
-    }
-    
-    .button-grid .download {
-      background-color: #10b981;
-      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
-    }
-
-    .button-grid .download:hover {
-      background-color: #059669;
-      box-shadow: 0 7px 20px rgba(16, 185, 129, 0.4);
-    }
-    
-    .footer {
-        text-align: center;
-        margin-top: 3rem;
-        font-size: 0.9rem;
-        color: #6b7280;
-    }
-
-    /* Responsive Design */
-    .menu-toggle {
-      display: none;
-      position: fixed;
-      top: 1rem;
-      left: 1rem;
-      background: #374151;
-      border: none;
-      color: #fff;
-      font-size: 1.5rem;
-      padding: 0.5rem 0.8rem;
-      border-radius: 8px;
-      z-index: 1001;
-      cursor: pointer;
-    }
-
-    @media (max-width: 768px) {
-      body {
-        flex-direction: column;
-      }
-      .sidebar {
-        position: fixed;
-        left: -100%;
-        top: 0;
-        height: 100%;
-        transition: left 0.3s ease;
-        z-index: 1000;
-      }
-      .sidebar.active {
-        left: 0;
-      }
-      .menu-toggle {
-        display: block;
-      }
-      .main {
-        padding: 1.5rem;
-        margin-top: 4rem;
-      }
-      .card ul {
-        columns: 1;
-      }
-    }
-  </style>
+        @media (max-width: 768px) {
+            .sidebar {
+                position: fixed;
+                left: -100%;
+                top: 0;
+                height: 100%;
+                z-index: 1000;
+                transition: left 0.3s ease;
+                box-shadow: 10px 0 30px rgba(0,0,0,0.3);
+            }
+            .sidebar.active {
+                left: 0;
+            }
+            .menu-toggle {
+                display: block;
+                position: fixed;
+                top: 1.5rem;
+                left: 1.5rem;
+                background: var(--sidebar-bg);
+                border: 1px solid var(--border-color);
+                color: var(--text-primary);
+                font-size: 1.2rem;
+                padding: 0.5rem 0.8rem;
+                border-radius: 8px;
+                z-index: 1001;
+                cursor: pointer;
+            }
+             .main-content {
+                padding-top: 6rem;
+             }
+        }
+    </style>
 </head>
 <body>
-  <div class="menu-toggle" onclick="toggleSidebar()">
-    <i class="fas fa-bars"></i>
-  </div>
+    
+    <button class="menu-toggle" id="menu-toggle"><i class="fas fa-bars"></i></button>
 
-  <aside class="sidebar" id="sidebar">
-    <h1>ModBot</h1>
-    <nav class="nav-links">
-      <a href="../index.html"><i class="fas fa-home"></i> Home</a>
-      <a href="https://discord.gg/4rnAU5Tj" target="_blank"><i class="fab fa-discord"></i> Support Server</a>
-    </nav>
-  </aside>
+    <div class="docs-container">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="../index.html">ModBot Docs</a>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="#getting-started">Getting Started</a></li>
+                    <li><a href="#self-hosting">Self-Hosting</a></li>
+                </ul>
 
-  <main class="main">
-    <div class="header">
-      <h2>ModBot Documentation</h2>
-      <p>Your guide to using and hosting the powerful ModBot</p>
+                <h4>COMMANDS</h4>
+                <ul>
+                    <li><a href="#commands-moderation">Moderation</a></li>
+                    <li><a href="#commands-utility">Utility</a></li>
+                </ul>
+                
+                <h4>ADDITIONAL INFO</h4>
+                <ul>
+                    <li><a href="#logging-system">Logging System</a></li>
+                    <li><a href="#support">Support</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content" id="main-content">
+            <article>
+                <h1>ModBot Documentation</h1>
+                <p>Welcome to the official documentation for ModBot. This guide provides all the information you need to invite, use, and self-host the bot.</p>
+                
+                <section id="getting-started">
+                    <h2>Getting Started</h2>
+                    <p>The easiest way to use ModBot is by inviting the publicly hosted version to your Discord server. This requires no setup on your part.</p>
+                    <p>Click the link below and select the server you wish to add the bot to. You will need "Manage Server" permissions.</p>
+                    <a href="https://discord.com/oauth2/authorize?client_id=1373826543742222377" target="_blank">Invite ModBot to Your Server &rarr;</a>
+                </section>
+                
+                <section id="self-hosting">
+                    <h2>Self-Hosting Guide</h2>
+                    <p>For advanced users who want full control and customization, self-hosting is the best option. Follow these steps to get your own instance running.</p>
+                    <ol>
+                        <li><strong>Download Files:</strong> Get the latest source code by <a href="../ModBot.zip" download>downloading the ZIP file</a>.</li>
+                        <li><strong>Install Dependencies:</strong> After extracting the files, open a terminal in the project's root directory and run the command:
+                            <pre><code>pip install -r requirements.txt</code></pre>
+                        </li>
+                        <li><strong>Configure Token:</strong> Create a file named <code>config.json</code> in the root directory and add your bot token like this: <code>{ "token": "YOUR_TOKEN_HERE" }</code>. Alternatively, you can place it in an <code>.env</code> File.</li>
+                        <li><strong>Run the Bot:</strong> Start the bot using Python:
+                            <pre><code>python utility_bot.py</code></pre>
+                        </li>
+                    </ol>
+                </section>
+
+                <section id="commands-moderation">
+                    <h2>Moderation Commands</h2>
+                    <p>These are the core commands for managing users and maintaining order in your server.</p>
+                    
+                    <h3>Ban / Unban</h3>
+                    <p>Permanently removes a user from the server. You can unban them to allow them to rejoin.</p>
+                    <pre><code>/ban &lt;user&gt; [reason]
+/unban &lt;user_id&gt;</code></pre>
+                    
+                    <h3>Kick</h3>
+                    <p>Removes a user from the server. They can rejoin immediately if they have a valid invite.</p>
+                    <pre><code>/kick &lt;user&gt; [reason]</code></pre>
+
+                    <h3>Mute / Unmute</h3>
+                    <p>Prevents a user from sending messages in text channels or speaking in voice channels.</p>
+                    <pre><code>/mute &lt;user&gt; [duration] [reason]
+/unmute &lt;user&gt;</code></pre>
+
+                    <h3>Warn / Unwarn</h3>
+                    <p>Issues a formal warning to a user, which is logged by the bot. You can also remove the latest warning.</p>
+                    <pre><code>/warn &lt;user&gt; &lt;reason&gt;
+/unwarn &lt;user&gt;</code></pre>
+                    
+                    <h3>Warnings Overview</h3>
+                    <p>Displays a list of all warnings a specific user has received.</p>
+                    <pre><code>/warnings &lt;user&gt;</code></pre>
+                </section>
+                
+                <section id="commands-utility">
+                    <h2>Utility Commands</h2>
+                    <p>Tools to configure the bot, manage channels, and get helpful information.</p>
+                    
+                    <h3>Lock / Unlock Channel</h3>
+                    <p>Prevents or allows the `@everyone` role from sending messages in a specific channel.</p>
+                    <pre><code>/lock [channel]
+/unlock [channel]</code></pre>
+                    
+                    <h3>Purge</h3>
+                    <p>Bulk deletes a specified number of messages from a channel. (Max 100 at a time)</p>
+                    <pre><code>/purge &lt;amount&gt;</code></pre>
+
+                    <h3>Set Prefix</h3>
+                    <p>Changes the command prefix for the bot on this server.</p>
+                    <pre><code>/setprefix &lt;new_prefix&gt;</code></pre>
+                    
+                    <h3>Help</h3>
+                    <p>Displays a list of all available commands and their descriptions.</p>
+                    <pre><code>/help</code></pre>
+                    
+                    <h3>Ping</h3>
+                    <p>Checks the bot's response time and API latency.</p>
+                    <pre><code>/ping</code></pre>
+                </section>
+
+                <section id="logging-system">
+                    <h2>Logging System</h2>
+                    <p>If you choose not to use the optional logging features, you may see the following message upon startup. This is purely informational and can be safely ignored.</p>
+                    <div class="note">
+                        <p><code>Error loading LoggingCog: Extension 'logging_cog' not found.</code> This does not affect the bot's core functionality.</p>
+                    </div>
+                </section>
+                
+                <section id="support">
+                    <h2>Support</h2>
+                    <p>If you encounter any issues, have questions, or want to contribute to the project, please join our official <a href="#">Support Server</a>. The community and developers are there to help.</p>
+                    <p>ModBot is an open-source project created by <strong>CubeZockii</strong>. Contributions are always welcome!</p>
+                </section>
+
+            </article>
+        </main>
     </div>
 
-    <section class="card">
-      <h3>Getting Started</h3>
-      <p>To invite the hosted ModBot to your server, use this link:</p>
-      <div class="button-grid">
-        <a href="https://discord.com/oauth2/authorize?client_id=1373826543742222377" target="_blank"><i class="fas fa-plus"></i> Invite ModBot</a>
-      </div>
-    </section>
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const menuToggle = document.getElementById('menu-toggle');
+        const mainContent = document.getElementById('main-content');
 
-    <section class="card">
-      <h3>Commands & Features</h3>
-      <ul>
-        <li>Ban / Unban</li>
-        <li>Kick</li>
-        <li>Purge</li>
-        <li>Warn / Unwarn</li>
-        <li>Warnings Overview</li>
-        <li>Mute / Unmute</li>
-        <li>Lock / Unlock Channels</li>
-        <li>Manage Roles</li>
-        <li>Logging (optional)</li>
-        <li>Server Prefix & Global Prefix</li>
-        <li>Ping & Help Commands</li>
-        <li>Message Moderation System</li>
-        <li>Setup Log & Alert Channel/s</li>
-      </ul>
-    </section>
-    
-    <section class="card">
-      <h3>Self-Hosting</h3>
-      <ol>
-        <li><a href="../ModBot.zip" class="download" download><i class="fas fa-download"></i> Download ZIP file</a></li>
-        <li>Extract the ZIP & open a terminal in the folder</li>
-        <li>Run <code>pip install -r requirements.txt</code></li>
-        <li>Enter your token in <code>config.json</code> or <code>.env</code></li>
-        <li>Start the bot with <code>python utility_bot.py</code></li>
-      </ol>
-      <p class="note">Recommended hosts: <a href="https://katabump.com/en/" target="_blank">KataBump</a>, <a href="https://sillydev.co.uk/" target="_blank">SillyDev</a>.</p>
-    </section>
-    
-    <section class="card">
-      <h3>Future Updates & Roadmap</h3>
-        <li>Nothing Planned for now!!</li>
-      </ul>
-    </section>
+        menuToggle.addEventListener('click', () => {
+          sidebar.classList.toggle('active');
+        });
 
-    <section class="card">
-        <h3>Logging System</h3>
-        <p>If the logging cog is not used, the following message may appear:</p>
-        <code>Error loading LoggingCog: Extension 'logging_cog' not found.</code>
-        <p class="note">This is just an informational message and does not affect the bot's functionality. You can ignore it.</p>
-    </section>
+        // Close sidebar when a link is clicked on mobile
+        document.querySelectorAll('.sidebar-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768 && sidebar.classList.contains('active')) {
+                    sidebar.classList.remove('active');
+                }
+            });
+        });
 
-    <section class="card">
-      <h3>Support</h3>
-      <p>Need help or want to contribute? Join the Support Server.</p>
-      <p>Created by <strong>CubeZockii</strong> – Contributions are welcome!</p>
-    </section>
+        // Simple scrollspy for sidebar navigation
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.sidebar-nav a');
 
-    <div class="footer">
-      <p>&copy; 2025 ModBot – All rights reserved</p>
-    </div>
-  </main>
+        mainContent.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (mainContent.scrollTop >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
 
-  <script>
-    function toggleSidebar() {
-      document.getElementById('sidebar').classList.toggle('active');
-    }
-  </script>
+            navLinks.forEach(a => {
+                a.classList.remove('active');
+                if (a.getAttribute('href') === `#${current}`) {
+                    a.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
