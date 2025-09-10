@@ -1,287 +1,267 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ModBot Dashboard</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="icon" href="ModBot.png" type="image/png" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <style>
-    /* Basic Resets and Global Styles */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ModBot - Smart Discord Moderation</title>
+    <link rel="icon" href="ModBot.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Lexend:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --primary-glow: #22c55e;
+            --secondary-glow: #3b82f6;
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --card-bg: rgba(30, 36, 45, 0.6);
+            --border-color: rgba(139, 148, 158, 0.3);
+        }
 
-    body {
-      font-family: 'Inter', sans-serif;
-      height: 100vh;
-      background-color: #111827; /* Darker, modern background */
-      color: #e5e7eb;
-      display: flex;
-      flex-direction: row;
-      overflow: hidden; /* Prevents scrolling on the body */
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    /* Sidebar */
-    .sidebar {
-      width: 250px;
-      background-color: #1f2937; /* Slight contrast to the body */
-      padding: 2.5rem 1.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 2.5rem;
-      transition: transform 0.3s ease-in-out;
-      border-right: 1px solid #374151;
-    }
+        body {
+            font-family: 'Lexend', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            background-image: radial-gradient(circle at 1% 1%, var(--primary-glow), transparent 25%), radial-gradient(circle at 99% 99%, var(--secondary-glow), transparent 25%);
+            background-attachment: fixed;
+            overflow-x: hidden;
+        }
 
-    .sidebar h1 {
-      font-size: 1.75rem;
-      color: #818cf8; /* Lighter indigo for better contrast */
-      text-shadow: 0 2px 8px rgba(129, 140, 248, 0.25);
-      text-align: center;
-      font-weight: 700;
-    }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
 
-    .nav-links {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
+        /* Header Navigation */
+        .main-header {
+            padding: 1.5rem 0;
+            background: rgba(13, 17, 23, 0.5);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    .nav-links a {
-      text-decoration: none;
-      color: #d1d5db;
-      padding: 0.85rem 1.25rem;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      font-weight: 600;
-      transition: all 0.2s ease;
-    }
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--primary-glow);
+        }
 
-    .nav-links a:hover, .nav-links a.active {
-      background-color: #4338ca; /* Stronger hover effect */
-      color: #fff;
-      transform: translateX(5px);
-    }
-    
-    .nav-links a i {
-        width: 20px; /* Fixed width for icons for better alignment */
-    }
+        .main-nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            margin-left: 1.5rem;
+            transition: color 0.2s ease;
+        }
 
-    /* Main Content */
-    .main {
-      flex: 1;
-      padding: 2.5rem;
-      overflow-y: auto;
-    }
+        .main-nav a:hover {
+            color: var(--text-primary);
+        }
+        
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 8rem 0;
+        }
+        
+        .hero h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            background: linear-gradient(45deg, var(--text-primary), var(--text-secondary));
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
 
-    .header {
-      margin-bottom: 2.5rem;
-    }
-    
-    .header h2 {
-        font-size: 2.25rem;
-        font-weight: 700;
-        color: #f9fafb;
-    }
+        .btn {
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            transition: all 0.2s ease-in-out;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-glow);
+            color: #0d1117;
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
+        }
 
-    .header p {
-      font-size: 1.1rem;
-      color: #9ca3af; /* Softer gray for subtitle */
-      margin-top: 0.25rem;
-    }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(34, 197, 94, 0.6);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--border-color);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--card-bg);
+            border-color: var(--text-secondary);
+        }
 
-    /* Card Style */
-    .card {
-      background-color: #1f2937;
-      border-radius: 16px; /* Larger radius for softer edges */
-      padding: 2rem;
-      margin-bottom: 2rem;
-      border: 1px solid #374151;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.2); /* Modern, softer shadow */
-    }
+        /* Features Section */
+        .features {
+            padding-bottom: 6rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
 
-    .card h2 {
-      font-size: 1.5rem;
-      color: #a5b4fc;
-      margin-bottom: 1.5rem;
-      border-bottom: 1px solid #4f46e5;
-      padding-bottom: 1rem;
-    }
+        .feature-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
 
-    .card ul {
-      list-style: none;
-      columns: 2;
-      padding-left: 0;
-      column-gap: 2rem;
-    }
+        .feature-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .feature-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
 
-    .card li {
-      margin-bottom: 0.75rem;
-      display: flex;
-      align-items: center;
-    }
+        /* Footer */
+        .main-footer {
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
 
-    .card li::before {
-      content: "✔";
-      color: #34d399; /* Brighter green */
-      margin-right: 0.75rem;
-      font-size: 1.1rem;
-    }
-
-    .note {
-      font-size: 0.9rem;
-      color: #9ca3af;
-      margin-top: 2rem;
-      font-style: italic;
-      background-color: rgba(55, 65, 81, 0.3);
-      padding: 1rem;
-      border-radius: 8px;
-    }
-
-    /* Button Grid */
-    .button-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-
-    .button-grid a {
-      background: #6366f1;
-      padding: 0.85rem 1.75rem;
-      border-radius: 8px;
-      color: #fff;
-      font-weight: 600;
-      text-decoration: none;
-      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.3);
-      transition: all 0.2s ease-in-out;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.75rem;
-      border: none;
-    }
-
-    .button-grid a:hover {
-      background: #4f46e5;
-      transform: translateY(-3px); /* Lifts the button on hover */
-      box-shadow: 0 7px 20px rgba(99, 102, 241, 0.4);
-    }
-    
-    .button-grid a:active {
-        transform: translateY(-1px);
-    }
-
-    .button-grid .download {
-      background-color: #10b981; /* Brighter green */
-      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
-    }
-
-    .button-grid .download:hover {
-      background-color: #059669;
-      box-shadow: 0 7px 20px rgba(16, 185, 129, 0.4);
-    }
-
-    /* Responsive Design */
-    .menu-toggle {
-      display: none;
-      position: fixed;
-      top: 1rem;
-      left: 1rem;
-      background: #374151;
-      border: none;
-      color: #fff;
-      font-size: 1.5rem;
-      padding: 0.5rem 0.8rem;
-      border-radius: 8px;
-      z-index: 1001;
-      cursor: pointer;
-    }
-
-    @media (max-width: 768px) {
-      body {
-        flex-direction: column;
-      }
-      .sidebar {
-        position: fixed;
-        left: -100%; /* Sidebar is off-screen by default */
-        top: 0;
-        height: 100%;
-        transition: left 0.3s ease;
-        z-index: 1000;
-      }
-      .sidebar.active {
-        left: 0;
-      }
-      .menu-toggle {
-        display: block;
-      }
-      .main {
-        padding: 1.5rem;
-        margin-top: 4rem; /* Space for the fixed menu button */
-      }
-      .card ul {
-        columns: 1; /* Single column on smaller screens */
-      }
-    }
-  </style>
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero { padding: 5rem 0; }
+        }
+    </style>
 </head>
 <body>
-  <button class="menu-toggle" onclick="toggleSidebar()">
-    <i class="fas fa-bars"></i>
-  </button>
 
-  <aside class="sidebar" id="sidebar">
-    <h1>ModBot</h1>
-    <nav class="nav-links">
-      <a href="docs/docs.html"><i class="fas fa-book-open"></i>Documentation</a>
-      <a href="https://discord.com/oauth2/authorize?client_id=1373826543742222377" target="_blank"><i class="fas fa-plus"></i>Invite Bot</a>
-      <a href="#" target=""><i class="fab fa-discord"></i>Support Server</a>
-    </nav>
-  </aside>
+    <header class="main-header">
+        <div class="container">
+            <a href="#" class="logo">ModBot<span>.</span></a>
+            <nav class="main-nav">
+                <a href="docs/docs.html">Documentation</a>
+                <a href="#">Support</a>
+            </nav>
+        </div>
+    </header>
 
-  <main class="main">
-    <div class="header">
-      <h2>Welcome to ModBot</h2>
-      <p>Smart Discord moderation for your server.</p>
-    </div>
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>The Future of Discord Moderation</h1>
+                <p>Powerful, intuitive, and fully customizable. ModBot provides everything you need to keep your community safe and thriving.</p>
+                <div class="cta-buttons">
+                    <a href="https://discord.com/oauth2/authorize?client_id=1373826543742222377" target="_blank" class="btn btn-primary"><i class="fas fa-plus"></i> Add to Discord</a>
+                    <a href="ModBot.zip" class="btn btn-secondary" download><i class="fas fa-download"></i> Download Files</a>
+                </div>
+            </div>
+        </section>
 
-    <div class="card">
-      <h2>Features & Commands</h2>
-      <ul>
-        <li>Ban / Unban</li>
-        <li>Kick</li>
-        <li>Purge</li>
-        <li>Warn / Unwarn</li>
-        <li>Warnings Overview</li>
-        <li>Mute / Unmute</li>
-        <li>Lock / Unlock Channels</li>
-        <li>Manage Roles</li>
-        <li>Logging (optional)</li>
-        <li>Server Prefix & Global Prefix</li>
-        <li>Ping & Help Commands</li>
-        <li>Message Moderation System</li>
-        <li>Setup Log & Alert Channel/s</li>
-      </ul>
-      <p class="note">
-        Note: If you're not using logging, you may see a startup error about <code>logging_cog</code>. This is normal – the bot still works fully without logging.
-      </p>
-    </div>
+        <section class="features" id="features">
+            <div class="container">
+                <h2 class="section-title">Core Features</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>Full Moderation Suite</h3>
+                        <p>Access essential commands like ban, kick, mute, and warn to manage users effectively.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Channel Control</h3>
+                        <p>Easily lock and unlock channels to manage conversations during raids or special events.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Advanced Logging</h3>
+                        <p>Keep a detailed audit trail of all moderation actions in a designated channel (optional).</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Custom Prefixes</h3>
+                        <p>Set a custom server prefix to avoid conflicts with other bots and streamline commands.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Message Moderation</h3>
+                        <p>Automate the deletion of unwanted messages based on configurable rules.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Self-Hostable</h3>
+                        <p>Take full control by downloading the source and hosting the bot on your own infrastructure.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-    <div class="button-grid">
-      <a href="ModBot.zip" class="download" download><i class="fas fa-download"></i>Download Bot Files</a>
-    </div>
-  </main>
+    <footer class="main-footer">
+        <p>ModBot – Created by CubeZockii</p>
+    </footer>
 
-  <script>
-    function toggleSidebar() {
-      document.getElementById('sidebar').classList.toggle('active');
-    }
-  </script>
 </body>
 </html>
