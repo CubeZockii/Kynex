@@ -198,6 +198,11 @@
                 border-radius: 8px;
                 z-index: 1001;
                 cursor: pointer;
+                transition: left 0.3s ease, transform 0.3s ease;
+            }
+            .menu-toggle.toggled {
+                left: calc(260px - 4rem);
+                transform: rotate(180deg);
             }
              .main-content {
                 padding-top: 6rem;
@@ -254,7 +259,7 @@
                         <li><strong>Install Dependencies:</strong> After extracting the files, open a terminal in the project's root directory and run the command:
                             <pre><code>pip install -r requirements.txt</code></pre>
                         </li>
-                        <li><strong>Configure Token:</strong> Create a file named <code>config.json</code> in the root directory and add your bot token like this: <code>{ "token": "YOUR_TOKEN_HERE" }</code>. Alternatively, you can place it in an <code>.env</code> File.</li>
+                        <li><strong>Configure Token:</strong> Create a file named <code>.env</code> in the root directory and add your bot token like this: <code>DISCORD_TOKEN=YourTokenHere</code>. Alternatively, you can place it in <code>config.json</code>.</li>
                         <li><strong>Run the Bot:</strong> Start the bot using Python:
                             <pre><code>python utility_bot.py</code></pre>
                         </li>
@@ -336,21 +341,34 @@
     <script>
         const sidebar = document.getElementById('sidebar');
         const menuToggle = document.getElementById('menu-toggle');
+        const menuIcon = menuToggle.querySelector('i');
         const mainContent = document.getElementById('main-content');
 
         menuToggle.addEventListener('click', () => {
           sidebar.classList.toggle('active');
+          menuToggle.classList.toggle('toggled');
+
+          if (sidebar.classList.contains('active')) {
+            menuIcon.classList.remove('fa-bars');
+            menuIcon.classList.add('fa-times');
+          } else {
+            menuIcon.classList.remove('fa-times');
+            menuIcon.classList.add('fa-bars');
+          }
         });
 
         document.querySelectorAll('.sidebar-nav a').forEach(link => {
             link.addEventListener('click', () => {
                 if (window.innerWidth <= 768 && sidebar.classList.contains('active')) {
                     sidebar.classList.remove('active');
+                    menuToggle.classList.remove('toggled');
+                    menuIcon.classList.remove('fa-times');
+                    menuIcon.classList.add('fa-bars');
                 }
             });
         });
 
-        const sections = document.querySelectorAll('section');
+        const sections = document.querySelectorAll('main section');
         const navLinks = document.querySelectorAll('.sidebar-nav a');
 
         mainContent.addEventListener('scroll', () => {
