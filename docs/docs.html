@@ -35,7 +35,6 @@
             height: 100vh;
         }
 
-        /* Sidebar Navigation */
         .sidebar {
             width: 260px;
             background-color: var(--sidebar-bg);
@@ -81,7 +80,6 @@
             color: var(--accent-color);
         }
 
-        /* Main Content */
         .main-content {
             flex: 1;
             padding: 3rem 4rem;
@@ -132,7 +130,6 @@
             padding-left: 1.5rem;
         }
         
-        /* Code Blocks */
         pre {
             background-color: var(--code-bg);
             border: 1px solid var(--border-color);
@@ -169,7 +166,6 @@
             color: #cdd9e5;
         }
 
-        /* Responsive */
         .menu-toggle { display: none; }
         
         @media (max-width: 1024px) {
@@ -346,7 +342,6 @@
           sidebar.classList.toggle('active');
         });
 
-        // Close sidebar when a link is clicked on mobile
         document.querySelectorAll('.sidebar-nav a').forEach(link => {
             link.addEventListener('click', () => {
                 if (window.innerWidth <= 768 && sidebar.classList.contains('active')) {
@@ -355,7 +350,6 @@
             });
         });
 
-        // Simple scrollspy for sidebar navigation
         const sections = document.querySelectorAll('section');
         const navLinks = document.querySelectorAll('.sidebar-nav a');
 
