@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ModEngine - Terms of Service</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600&family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --primary-glow: #22c55e;
+            --secondary-glow: #3b82f6;
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --card-bg: rgba(30, 36, 45, 0.6);
+            --border-color: rgba(139, 148, 158, 0.3);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Lexend', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            background-image: radial-gradient(circle at 1% 1%, var(--primary-glow), transparent 25%), radial-gradient(circle at 99% 99%, var(--secondary-glow), transparent 25%);
+            background-attachment: fixed;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        .main-header {
+            padding: 1.5rem 0;
+            background: rgba(13, 17, 23, 0.5);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+        .logo span {
+            color: var(--primary-glow);
+        }
+        .main-nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            margin-left: 1.5rem;
+            transition: color 0.2s ease;
+        }
+        .main-nav a:hover, .main-nav a.active {
+            color: var(--text-primary);
+        }
+        .main-footer {
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 4rem;
+        }
+        .policy-container {
+            padding: 4rem 0;
+        }
+        .policy-content {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem 3rem;
+            backdrop-filter: blur(10px);
+        }
+        .policy-content h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            background: linear-gradient(45deg, var(--primary-glow), var(--secondary-glow));
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .policy-content h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            border-left: 3px solid var(--primary-glow);
+            padding-left: 1rem;
+        }
+        .policy-content p, .policy-content li {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+        .policy-content ul {
+            list-style-position: inside;
+            padding-left: 0;
+            margin: 1rem 0;
+        }
+         .policy-content li {
+            margin-bottom: 0.5rem;
+        }
+        .policy-content a {
+            color: var(--secondary-glow);
+        }
+        .policy-content a:hover {
+            color: var(--primary-glow);
+            text-decoration: underline;
+        }
+        .last-updated {
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <a href="#" class="logo">Mod<span>Engine</span></a>
+            <nav class="main-nav">
+                <a href="../index.html">Home</a>
+                <a href="index.html" class="active">Terms of Service</a>
+                <a href="../privacy/index.html">Privacy Policy</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="policy-container">
+        <div class="container">
+            <div class="policy-content">
+                <h1>Terms of Service</h1>
+                <p class="last-updated">Last Updated: September 24, 2025</p>
+                <p>
+                    By inviting and using the ModEngine ("Bot") in your Discord server, you ("User") agree to these Terms of Service. If you do not agree with these terms, you must remove the Bot from your server.
+                </p>
+
+                <h2>1. Bot Usage</h2>
+                <ul>
+                    <li>The Bot is intended for server moderation, utility, and management purposes as described in its commands.</li>
+                    <li>You agree not to use the Bot for any purpose that is illegal, malicious, or violates Discord's Terms of Service.</li>
+                    <li>Prohibited actions include, but are not limited to: exploiting bugs, attempting to disrupt the Bot's service, or using the Bot to spam or harass others.</li>
+                </ul>
+
+                <h2>2. Availability and Service</h2>
+                <ul>
+                    <li>The Bot is provided on an "as-is" and "as-available" basis. We strive for high uptime but do not guarantee uninterrupted service.</li>
+                    <li>Functionality may be added, altered, or removed at any time without prior notice.</li>
+                </ul>
+
+                <h2>3. Termination</h2>
+                <ul>
+                    <li>You may terminate this agreement at any time by simply removing the Bot from your server.</li>
+                    <li>We reserve the right to prevent the Bot from operating in any server, for any reason, at our sole discretion. This may include blacklisting a server or user from accessing the Bot's services.</li>
+                </ul>
+
+                <h2>4. Limitation of Liability</h2>
+                <p>
+                    The creators and maintainers of ModEngine are not responsible for any damages or losses that may result from the use or inability to use the Bot. The responsibility for managing your server and its members remains solely with the server's staff.
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2025 ModEngine. All rights reserved.</p>
+    </footer>
+</body>
+</html>
