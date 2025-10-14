@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kynex - FAQ</title>
+     <link rel="icon" href="Kynex.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600&family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --primary-glow: #22c55e;
+            --secondary-glow: #3b82f6;
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --card-bg: rgba(30, 36, 45, 0.6);
+            --border-color: rgba(139, 148, 158, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Lexend', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            background-image: radial-gradient(circle at 1% 1%, var(--primary-glow), transparent 25%), radial-gradient(circle at 99% 99%, var(--secondary-glow), transparent 25%);
+            background-attachment: fixed;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        /* New Header Styles from index-old.html */
+        .main-header {
+            padding: 1.5rem 0;
+            background: rgba(13, 17, 23, 0.5);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--primary-glow);
+        }
+
+        .main-nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            margin-left: 1.5rem;
+            transition: color 0.2s ease;
+        }
+
+        .main-nav a:hover {
+            color: var(--text-primary);
+        }
+        
+        /* End New Header Styles */
+
+        .faq-section-header { /* Renamed for clarity, since main-header is now the nav bar */
+            text-align: center;
+            padding: 4rem 0 3rem;
+        }
+        
+        .faq-section-header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+        
+        .faq-section-header p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .search-box {
+            margin-bottom: 3rem;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 15px 25px;
+            font-size: 1em;
+            font-family: 'Lexend', sans-serif;
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            background-color: rgba(13, 17, 23, 0.7);
+            color: var(--text-primary);
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-box input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .search-box input:focus {
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
+            border-color: var(--primary-glow);
+        }
+
+        .faq-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .faq-category-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .faq-category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .category-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5em;
+            color: var(--primary-glow);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .category-icon {
+            font-size: 1.3em;
+        }
+
+        .faq-item {
+            margin-bottom: 10px;
+            padding-left: 15px;
+            border-left: 3px solid var(--border-color);
+            transition: border-color 0.3s ease;
+        }
+        
+        .faq-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .faq-item:hover {
+            border-left-color: var(--primary-glow);
+        }
+
+        .faq-question {
+            font-weight: 600;
+            color: var(--text-primary);
+            cursor: pointer;
+            padding: 10px 0;
+            transition: color 0.2s;
+        }
+
+        .faq-question:hover {
+            color: var(--primary-glow);
+        }
+
+        .faq-answer {
+            /* This is hidden and its content is used for the modal */
+            display: none; 
+        }
+
+        code {
+            background: rgba(139, 148, 158, 0.2);
+            padding: 3px 6px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            color: #58a6ff;
+            font-size: 0.9em;
+        }
+
+        .highlight {
+            background: rgba(34, 197, 94, 0.15);
+            padding: 2px 5px;
+            border-radius: 4px;
+            color: #2e9a59;
+            font-weight: 600;
+        }
+
+        .no-results {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 1.2em;
+            padding: 40px;
+            display: none;
+        }
+        
+        .main-footer {
+            text-align: center;
+            padding: 4rem 0 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 4rem;
+        }
+
+        /* --- Modal Styles --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .modal-close:hover {
+            color: var(--text-primary);
+        }
+
+        .modal-question {
+            font-family: 'Poppins', sans-serif;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            color: var(--primary-glow);
+        }
+
+        .modal-answer {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        /* --- Updated Responsive Navigation Styles (Sidebar Menu) --- */
+        .nav-toggle {
+            display: none; /* Hidden by default on desktop */
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-primary);
+            background: none;
+            border: none;
+            padding: 0;
+            line-height: 1;
+            z-index: 20; /* Ensure it's above the sidebar */
+            transition: color 0.2s ease; 
+        }
+        
+        /* NEW: Smooth Icon Transition */
+        .nav-toggle i {
+            /* Apply a smooth transition to the icon's rotation */
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-block; /* Essential for transform to work */
+            transform: rotate(0deg);
+        }
+
+        /* Rotate the icon slightly when the sidebar is open */
+        .nav-toggle[aria-expanded="true"] i {
+            transform: rotate(90deg);
+        }
+        
+        .nav-toggle:hover {
+            color: var(--primary-glow); /* Green hover effect */
+        }
+
+        @media (max-width: 768px) {
+            .faq-section-header h1 { font-size: 2.2rem; }
+            .container { padding: 0 1rem; }
+            .faq-category-card { padding: 1.5rem; }
+            .modal-content { padding: 1.5rem; }
+            .modal-question { font-size: 1.2rem; }
+            
+            /* Main Navigation Container (The Sidebar) */
+            .main-nav {
+                display: flex; 
+                flex-direction: column;
+                position: fixed; 
+                top: 0; 
+                right: 0; 
+                height: 100vh; 
+                width: 300px; 
+                max-width: 80%; 
+                overflow-y: auto; 
+                background: rgba(13, 17, 23, 0.95); /* Deeper dark background with transparency */
+                backdrop-filter: blur(20px); /* Deeper blur effect */
+                border-left: 1px solid var(--primary-glow); /* Green accent border */
+                box-shadow: -15px 0 40px rgba(0, 0, 0, 0.8); /* Stronger shadow for depth */
+                padding-top: 5rem; 
+                /* Key for slide animation: move it off-screen */
+                transform: translateX(100%); 
+                /* Smoother, modern transition */
+                transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+                z-index: 15; 
+            }
+
+            /* Active State for Mobile Menu */
+            .main-nav.open {
+                transform: translateX(0); /* Slide fully into view */
+            }
+            
+            .main-nav a {
+                margin: 0;
+                padding: 1.25rem 2rem; 
+                text-align: left; 
+                width: 100%;
+                border-bottom: 1px solid rgba(139, 148, 158, 0.1);
+                font-size: 1.1rem;
+                transition: all 0.2s ease-in-out; 
+            }
+
+            .main-nav a:last-child {
+                border-bottom: none;
+            }
+            
+            .main-nav a:hover,
+            .main-nav a.active {
+                background-color: rgba(34, 197, 94, 0.1); 
+                color: var(--text-primary);
+                border-left: 4px solid var(--primary-glow); 
+                padding-left: calc(2rem - 4px); 
+            }
+            
+            /* Hamburger Icon Display */
+            .nav-toggle {
+                display: block; /* Show the toggle button */
+            }
+
+            /* Adjust header layout for mobile */
+            .main-header .container {
+                justify-content: space-between;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <header class="main-header">
+        <div class="container">
+            <a href="../" class="logo">Kynex<span>.</span></a>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav class="main-nav">
+                <a href="../">Home</a>
+                <a href="../tos/">Terms of Service</a>
+                <a href="../privacy/">Privacy Policy</a>
+            </nav>
+        </div>
+    </header>
+    
+    <div class="container">
+        <header class="faq-section-header">
+            <h1><i class="fa-solid fa-question"></i> Kynex FAQ</h1>
+            <p>Your questions, answered. Find solutions and information below.</p>
+        </header>
+
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search for a question...">
+            <script>
+                // JavaScript to insert Font Awesome icon into placeholder on load
+                document.addEventListener('DOMContentLoaded', () => {
+                    const searchInput = document.getElementById('searchInput');
+                    searchInput.setAttribute('placeholder', '\uf002 Search for a question...');
+                    searchInput.style.fontFamily = `'Lexend', 'Font Awesome 6 Free', sans-serif`;
+                    searchInput.style.fontWeight = '900';
+                });
+            </script>
+        </div>
+
+        <div class="no-results" id="noResults">
+            No questions found matching your search.
+        </div>
+
+        <div class="faq-grid" id="faqContainer">
+            <div class="faq-category-card" data-category="getting-started">
+                <h2 class="category-title">
+                    <span class="category-icon"><i class="fa-solid fa-rocket"></i></span> Getting Started
+                </h2>
+                <div class="faq-item">
+                    <div class="faq-question">What is Kynex?</div>
+                    <div class="faq-answer">Kynex is a comprehensive Discord management bot designed to help server administrators moderate their communities effectively. It includes features like auto-moderation, logging, warning systems, and various moderation commands.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">How do I invite Kynex to my server?</div>
+                    <div class="faq-answer">Visit the Kynex website and click on the "Invite" button. Make sure you have the <span class="highlight">Manage Server</span> permission to add bots to your Discord server.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">What is the bot's prefix?</div>
+                    <div class="faq-answer">The bot's prefix is <code>~</code>. It also supports slash commands (e.g., <code>/help</code>), which are recommended for their ease of use and built-in guides.</div>
+                </div>
+            </div>
+
+            <div class="faq-category-card" data-category="commands">
+                <h2 class="category-title">
+                    <span class="category-icon"><i class="fa-solid fa-gears"></i></span> Commands & Usage
+                </h2>
+                <div class="faq-item">
+                    <div class="faq-question">What's the difference between prefix and slash commands?</div>
+                    <div class="faq-answer">Kynex supports both types! Prefix commands start with <code>~</code>, like <code>~kick @user</code>. Slash commands start with <code>/</code>, like <code>/kick user: @user</code>. Slash commands offer helpful autocomplete and are easier to discover within Discord.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">How do I see all available commands?</div>
+                    <div class="faq-answer">Use the <code>~help</code> command for a list of prefix commands or simply type <code>/</code> to see a list of all available slash commands in Discord.</div>
+                </div>
+            </div>
+            
+            <div class="faq-category-card" data-category="moderation">
+                <h2 class="category-title">
+                    <span class="category-icon"><i class="fa-solid fa-shield-halved"></i></span> Moderation
+                </h2>
+                <div class="faq-item">
+                    <div class="faq-question">What moderation commands are available?</div>
+                    <div class="faq-answer">Kynex includes: <code>kick</code>, <code>ban</code>, <code>unban</code>, <code>warn</code>, <code>unwarn</code>, <code>warnings</code>, <code>mute</code>, <code>unmute</code>, <code>lock</code>, <code>unlock</code>, <code>purge</code>, and <code>role</code> commands. All commands are available in both prefix and slash formats.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">How does the warning system work?</div>
+                    <div class="faq-answer">Use <code>~warn @user reason</code> to issue warnings. Each warning gets a unique ID. View warnings with <code>~warnings @user</code> and remove specific warnings with <code>~unwarn @user warning_id</code>. Warnings are stored per server and include moderator info and timestamps.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">How does the mute command work?</div>
+                    <div class="faq-answer">Kynex uses role-based muting. You need to create a role named <code>Muted 🔇</code> in your server and configure its permissions (deny Send Messages in channels). The bot will then assign/remove this role when you use <code>~mute</code> and <code>~unmute</code>.</div>
+                </div>
+            </div>
+
+            <div class="faq-category-card" data-category="auto-moderation">
+                <h2 class="category-title">
+                    <span class="category-icon"><i class="fa-solid fa-robot"></i></span> Auto-Moderation
+                </h2 >
+                <div class="faq-item">
+                    <div class="faq-question">Does Kynex have auto-moderation features?</div>
+                    <div class="faq-answer">Yes! Kynex automatically filters inappropriate language based on a configurable bad words list. When triggered, it deletes the message, applies a 30-minute timeout to the user, and sends an alert to your configured alert channel.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Does auto-moderation affect staff members?</div>
+                    <div class="faq-answer">No, users with the <span class='highlight'>Manage Messages</span> permission are automatically exempt from auto-moderation filters.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">How do I set up moderation alerts?</div>
+                    <div class="faq-answer">Use the <code>/setup-alert</code> command (requires Administrator permission). Select the channel where you want to receive moderation alerts using the dropdown menu. This channel will receive notifications about auto-moderation actions with interactive buttons to manage timeouts.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">What are the timeout control buttons?</div>
+                    <div class="faq-answer">Auto-moderation alerts include three persistent buttons: <span class='highlight'>+15m</span> (extend timeout by 15 minutes), <span class='highlight'>-15m</span> (reduce timeout by 15 minutes), and <span class='highlight'>Remove Timeout</span> (completely remove the timeout). These buttons work across bot restarts.</div>
+                </div>
+            </div>
+            
+            <div class="faq-category-card" data-category="logging">
+                <h2 class="category-title">
+                    <span class="category-icon"><i class="fa-solid fa-clipboard-list"></i></span> Logging System
+                </h2>
+                <div class="faq-item">
+                    <div class="faq-question">What events does Kynex log?</div>
+                    <div class="faq-answer">Kynex logs: member joins/leaves, message edits/deletes, bulk message deletions, channel creation/deletion/updates, role creation/deletion/updates, member profile updates (nicknames, roles), bans, unbans, and all moderation command executions.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">How do I set up logging channels?</div>
+                    <div class="faq-answer">Use the <code>/setup-logs</code> command (requires Administrator permission). You can set separate channels for action logs (moderation events) and error logs (bot errors). Select your channels from the dropdowns and click 'Save Configuration'.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">What's the difference between action logs and error logs?</div>
+                    <div class="faq-answer"><span class='highlight'>Action logs</span> track server events and moderation actions (joins, leaves, bans, command usage, etc.). <span class='highlight'>Error logs</span> track bot errors and issues that need attention from server administrators.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Can I disable specific log types?</div>
+                    <div class="faq-answer">Currently, logging is all-or-nothing. Simply don't set up log channels if you don't want logging, or set them to a channel only administrators can see.</div>
+                </div>
+            </div>
+
+            <div class="faq-category-card" data-category="troubleshooting">
+                <h2 class="category-title">
+                    <span class="category-icon"><i class="fa-solid fa-wrench"></i></span> Troubleshooting
+                </h2>
+                <div class="faq-item">
+                    <div class="faq-question">The bot isn't responding to commands!</div>
+                    <div class="faq-answer">Check these common issues:<br>• Make sure you're using the correct prefix, which is <code>~</code>.<br>• Verify the bot has <span class='highlight'>Read Messages</span> and <span class='highlight'>Send Messages</span> permissions in the channel.<br>• Try using slash commands with <code>/</code> instead.<br>• Check the bot's status to ensure it's online.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">The bot says it lacks permissions!</div>
+                    <div class="faq-answer">Kynex needs appropriate permissions to function. Key permissions include: Kick Members, Ban Members, Manage Messages, Manage Roles, Manage Channels, View Audit Log, and Moderate Members (for timeouts). Ensure the bot's role is high enough in the role hierarchy.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Slash commands aren't showing up!</div>
+                    <div class="faq-answer">Slash commands can take up to 1 hour to register after inviting the bot. If they still don't appear, try removing and re-inviting the bot with the correct permissions. Make sure you have <code>applications.commands</code> permission enabled when inviting.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">The mute command doesn't work!</div>
+                    <div class="faq-answer">Create a role named exactly <code>Muted 🔇</code> and configure its permissions to deny sending messages in your channels. Make sure the bot's role is positioned <span class='highlight'>higher</span> than the Muted role in your server's role list.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Auto-moderation isn't working!</div>
+                    <div class="faq-answer">Ensure you've set up an alert channel using <code>/setup-alert</code>. The bot needs the <span class='highlight'>Manage Messages</span> permission to delete filtered messages and <span class='highlight'>Moderate Members</span> permission to timeout users. Remember that users with Manage Messages permission are exempt from filters.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Logging isn't working!</div>
+                    <div class="faq-answer">Use <code>/setup-logs</code> to configure your log channels. Ensure the bot has <span class='highlight'>Send Messages</span> and <span class='highlight'>Embed Links</span> permissions in those channels. For detailed audit log information, the bot also needs the <span class='highlight'>View Audit Log</span> permission.</div>
+                </div>
+            </div>
+
+            <div class="faq-category-card" data-category="advanced">
+                <h2 class="category-title">
+                    <span class="category-icon"><i class="fa-solid fa-bolt"></i></span> Advanced Features
+                </h2>
+                <div class="faq-item">
+                    <div class="faq-question">What are persistent buttons?</div>
+                    <div class="faq-answer">The timeout control buttons in auto-moderation alerts are 'persistent,' meaning they continue to work even if the bot restarts. This ensures moderators can always manage timeouts from alert messages, regardless of when they were sent.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Does Kynex store any user data?</div>
+                    <div class="faq-answer">Kynex stores server-specific configuration (prefixes, log channel IDs, alert channel IDs) and warning data (user IDs, reasons, moderator info, timestamps). No message content or personal data is permanently stored. All data is stored per-server and not shared between servers.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Can I see the bot's latency/ping?</div>
+                    <div class="faq-answer">Yes! Use the <code>~ping</code> or <code>/ping</code> command to check the bot's current latency to Discord's servers.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">How does the ban command work with message deletion?</div>
+                    <div class="faq-answer">The ban command includes an optional parameter to delete the user's recent messages (0-7 days). Example: <code>~ban @user 7 spam</code> bans the user and deletes their messages from the past 7 days. Default is 0 days (no deletion).</div>
+                </div>
+            </div>
+
+        </div> 
+        <footer class="main-footer">
+            &copy; 2025 Kynex Bot. All rights reserved.
+        </footer>
+    </div> 
+    <div id="faq-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2 id="modal-question-title" class="modal-question"></h2>
+            <div id="modal-answer-content" class="modal-answer"></div>
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // --- Navigation Logic ---
+            const navToggle = document.querySelector('.nav-toggle');
+            const mainNav = document.querySelector('.main-nav');
+            const icon = navToggle.querySelector('i'); // Select the icon element
+
+            navToggle.addEventListener('click', () => {
+                const isOpen = mainNav.classList.toggle('open');
+                navToggle.setAttribute('aria-expanded', isOpen);
+                
+                // Icon swap logic: fa-bars <-> fa-xmark (the close icon)
+                if (isOpen) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-xmark');
+                } else {
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                }
+            });
+
+
+            // --- Modal Logic ---
+            const modalOverlay = document.getElementById('faq-modal');
+            const modalQuestionTitle = document.getElementById('modal-question-title');
+            const modalAnswerContent = document.getElementById('modal-answer-content');
+            const closeModalButton = modalOverlay.querySelector('.modal-close');
+            const allQuestions = document.querySelectorAll('.faq-question');
+
+            allQuestions.forEach(questionEl => {
+                questionEl.addEventListener('click', () => {
+                    const questionText = questionEl.textContent;
+                    const answerHTML = questionEl.nextElementSibling.innerHTML;
+
+                    modalQuestionTitle.textContent = questionText;
+                    modalAnswerContent.innerHTML = answerHTML;
+
+                    modalOverlay.classList.add('active');
+                });
+            });
+
+            const closeModal = () => {
+                modalOverlay.classList.remove('active');
+            };
+
+            closeModalButton.addEventListener('click', closeModal);
+            modalOverlay.addEventListener('click', (event) => {
+                // Close only if clicking the overlay itself, not the content inside
+                if (event.target === modalOverlay) {
+                    closeModal();
+                }
+            });
+
+            // --- Search Filter Logic ---
+            const searchInput = document.getElementById('searchInput');
+            const faqContainer = document.getElementById('faqContainer');
+            const faqCategories = faqContainer.querySelectorAll('.faq-category-card');
+            const noResults = document.getElementById('noResults');
+
+            searchInput.addEventListener('keyup', (e) => {
+                const searchTerm = e.target.value.toLowerCase();
+                // Remove the Font Awesome icon from search term if present
+                const cleanSearchTerm = searchTerm.startsWith('\uf002') ? searchTerm.substring(1).trim() : searchTerm.trim();
+                let totalMatches = 0;
+
+                faqCategories.forEach(category => {
+                    const questions = category.querySelectorAll('.faq-item');
+                    let categoryMatches = 0;
+
+                    questions.forEach(item => {
+                        const questionText = item.querySelector('.faq-question').textContent.toLowerCase();
+                        const answerText = item.querySelector('.faq-answer').textContent.toLowerCase();
+
+                        if (questionText.includes(cleanSearchTerm) || answerText.includes(cleanSearchTerm)) {
+                            item.style.display = 'block';
+                            categoryMatches++;
+                            totalMatches++;
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+
+                    // Hide or show the whole category card based on matches
+                    if (categoryMatches > 0) {
+                        category.style.display = 'block';
+                    } else {
+                        category.style.display = 'none';
+                    }
+                });
+
+                // Show or hide the "no results" message
+                if (totalMatches > 0) {
+                    noResults.style.display = 'none';
+                } else {
+                    noResults.style.display = 'block';
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

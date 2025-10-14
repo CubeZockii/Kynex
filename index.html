@@ -23,6 +23,10 @@
             padding: 0;
             box-sizing: border-box;
         }
+        
+        html {
+            overflow-x: hidden;
+        }
 
         body {
             font-family: 'Lexend', sans-serif;
@@ -161,7 +165,7 @@
 
         .feature-card {
             background: var(--card-bg);
-            border: 1px solid var(--border-color);
+            border: 1:px solid var(--border-color);
             border-radius: 12px;
             padding: 2rem;
             backdrop-filter: blur(10px);
@@ -191,10 +195,102 @@
             color: var(--text-secondary);
             font-size: 0.9rem;
         }
+        
+        /* --- Updated Responsive Navigation Styles (Sidebar Menu) --- */
+        
+        .nav-toggle {
+            display: none; /* Hidden by default on desktop */
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-primary);
+            background: none;
+            border: none;
+            padding: 0;
+            line-height: 1;
+            z-index: 20; /* Ensure it's above the sidebar */
+            transition: color 0.2s ease; 
+        }
+
+        /* NEW: Smooth Icon Transition */
+        .nav-toggle i {
+            /* Apply a smooth transition to the icon's rotation */
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-block; /* Essential for transform to work */
+            transform: rotate(0deg);
+        }
+
+        /* Rotate the icon slightly when the sidebar is open */
+        .nav-toggle[aria-expanded="true"] i {
+            transform: rotate(90deg);
+        }
+        
+        .nav-toggle:hover {
+            color: var(--primary-glow); /* Green hover effect */
+        }
 
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.5rem; }
             .hero { padding: 5rem 0; }
+            
+            /* Main Navigation Container (The Sidebar) */
+            .main-nav {
+                display: flex; 
+                flex-direction: column;
+                position: fixed; /* Fixed position for full viewport height */
+                top: 0; 
+                right: 0; /* Slide from the right */
+                height: 100vh; /* Full viewport height */
+                width: 300px; 
+                max-width: 80%; /* Safety width for very small devices */
+                overflow-y: auto; /* Allow scrolling if links exceed height */
+                background: rgba(13, 17, 23, 0.95); /* Deeper dark background with transparency */
+                backdrop-filter: blur(20px); /* Deeper blur effect */
+                border-left: 1px solid var(--primary-glow); /* Green accent border */
+                box-shadow: -15px 0 40px rgba(0, 0, 0, 0.8); /* Stronger shadow for depth */
+                padding-top: 5rem; 
+                /* Key for slide animation: move it off-screen */
+                transform: translateX(100%); 
+                /* Smoother, modern transition */
+                transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+                z-index: 15; 
+            }
+
+            /* Active State for Mobile Menu */
+            .main-nav.open {
+                transform: translateX(0); /* Slide fully into view */
+            }
+            
+            .main-nav a {
+                margin: 0;
+                padding: 1.25rem 2rem; /* Increased vertical padding */
+                text-align: left; 
+                width: 100%;
+                border-bottom: 1px solid rgba(139, 148, 158, 0.1);
+                font-size: 1.1rem;
+                transition: all 0.2s ease-in-out; /* Add transition to links */
+            }
+
+            .main-nav a:last-child {
+                border-bottom: none;
+            }
+            
+            .main-nav a:hover,
+            .main-nav a.active {
+                background-color: rgba(34, 197, 94, 0.1); /* Subtle green tint on hover/active */
+                color: var(--text-primary);
+                border-left: 4px solid var(--primary-glow); /* Indicator bar on the left */
+                padding-left: calc(2rem - 4px); /* Adjust padding to keep alignment */
+            }
+
+            /* Hamburger Icon Display */
+            .nav-toggle {
+                display: block; 
+            }
+
+            /* Adjust header layout for mobile */
+            .main-header .container {
+                justify-content: space-between;
+            }
         }
     </style>
 </head>
@@ -203,10 +299,14 @@
     <header class="main-header">
         <div class="container">
             <a href="#" class="logo">Kynex<span>.</span></a>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
             <nav class="main-nav">
                 <a href="docs/">Documentation</a>
                 <a href="tos/">Terms of Service</a>
                 <a href="privacy/">Privacy Policy</a>
+                <a href="faq.html">FAQ</a>
                 <a href="https://discord.gg/EM4ZSWH2GJ">Support</a>
             </nav>
         </div>
@@ -261,5 +361,26 @@
         <p>Kynex – Created by CubeZockii</p>
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navToggle = document.querySelector('.nav-toggle');
+            const mainNav = document.querySelector('.main-nav');
+            const icon = navToggle.querySelector('i'); // Select the icon element
+            
+            navToggle.addEventListener('click', () => {
+                const isOpen = mainNav.classList.toggle('open');
+                navToggle.setAttribute('aria-expanded', isOpen);
+                
+                // Icon swap logic: fa-bars <-> fa-xmark (the close icon)
+                if (isOpen) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-xmark');
+                } else {
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
