@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600&family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
             --bg-color: #0d1117;
@@ -18,11 +19,17 @@
             --card-bg: rgba(30, 36, 45, 0.6);
             --border-color: rgba(139, 148, 158, 0.3);
         }
+        
+        html {
+            overflow-x: hidden;
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+        
         body {
             font-family: 'Lexend', sans-serif;
             background-color: var(--bg-color);
@@ -31,11 +38,13 @@
             background-attachment: fixed;
             overflow-x: hidden;
         }
+        
         .container {
             max-width: 900px;
             margin: 0 auto;
             padding: 0 2rem;
         }
+        
         .main-header {
             padding: 1.5rem 0;
             background: rgba(13, 17, 23, 0.5);
@@ -45,11 +54,13 @@
             top: 0;
             z-index: 10;
         }
+        
         .main-header .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
+        
         .logo {
             font-family: 'Poppins', sans-serif;
             font-size: 1.75rem;
@@ -57,9 +68,11 @@
             color: var(--text-primary);
             text-decoration: none;
         }
+        
         .logo span {
             color: var(--primary-glow);
         }
+        
         .main-nav a {
             color: var(--text-secondary);
             text-decoration: none;
@@ -67,9 +80,11 @@
             margin-left: 1.5rem;
             transition: color 0.2s ease;
         }
+        
         .main-nav a:hover, .main-nav a.active {
             color: var(--text-primary);
         }
+        
         .main-footer {
             text-align: center;
             padding: 2rem 0;
@@ -78,9 +93,11 @@
             font-size: 0.9rem;
             margin-top: 4rem;
         }
+        
         .policy-container {
             padding: 4rem 0;
         }
+        
         .policy-content {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -88,6 +105,7 @@
             padding: 2rem 3rem;
             backdrop-filter: blur(10px);
         }
+        
         .policy-content h1 {
             font-family: 'Poppins', sans-serif;
             font-size: 2.5rem;
@@ -98,6 +116,7 @@
             background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+        
         .policy-content h2 {
             font-family: 'Poppins', sans-serif;
             font-size: 1.5rem;
@@ -107,26 +126,32 @@
             border-left: 3px solid var(--secondary-glow);
             padding-left: 1rem;
         }
+        
         .policy-content p, .policy-content li {
             font-size: 1rem;
             line-height: 1.7;
             color: var(--text-secondary);
         }
+        
         .policy-content ul {
             list-style-position: inside;
             padding-left: 0;
             margin: 1rem 0;
         }
+        
          .policy-content li {
             margin-bottom: 0.5rem;
         }
+        
         .policy-content a {
             color: var(--primary-glow);
         }
+        
         .policy-content a:hover {
             color: var(--secondary-glow);
             text-decoration: underline;
         }
+        
         .policy-content code {
             background-color: rgba(139, 148, 158, 0.2);
             color: var(--text-primary);
@@ -134,19 +159,117 @@
             border-radius: 4px;
             font-size: 0.9rem;
         }
+        
         .last-updated {
             font-style: italic;
             color: var(--text-secondary);
             margin-bottom: 2rem;
+        }
+        
+        /* --- Updated Responsive Navigation Styles (Sidebar Menu) --- */
+        .nav-toggle {
+            display: none; /* Hidden by default on desktop */
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-primary);
+            background: none;
+            border: none;
+            padding: 0;
+            line-height: 1;
+            z-index: 20; /* Ensure it's above the sidebar */
+            transition: color 0.2s ease; 
+        }
+
+        /* NEW: Smooth Icon Transition */
+        .nav-toggle i {
+            /* Apply a smooth transition to the icon's rotation */
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-block; /* Essential for transform to work */
+            transform: rotate(0deg);
+        }
+
+        /* Rotate the icon slightly when the sidebar is open */
+        .nav-toggle[aria-expanded="true"] i {
+            transform: rotate(90deg);
+        }
+
+        .nav-toggle:hover {
+            color: var(--primary-glow); /* Green hover effect */
+        }
+
+        @media (max-width: 768px) {
+            /* Main Navigation Container (The Sidebar) */
+            .main-nav {
+                display: flex; 
+                flex-direction: column;
+                position: fixed; 
+                top: 0; 
+                right: 0; 
+                height: 100vh; 
+                width: 300px; 
+                max-width: 80%; 
+                overflow-y: auto; 
+                background: rgba(13, 17, 23, 0.95); 
+                backdrop-filter: blur(20px); 
+                border-left: 1px solid var(--primary-glow); 
+                box-shadow: -15px 0 40px rgba(0, 0, 0, 0.8); 
+                padding-top: 5rem; 
+                /* Key for slide animation: move it off-screen */
+                transform: translateX(100%); 
+                /* Smoother, modern transition */
+                transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+                z-index: 15; 
+            }
+
+            /* Active State for Mobile Menu */
+            .main-nav.open {
+                transform: translateX(0); /* Slide fully into view */
+            }
+            
+            .main-nav a {
+                margin: 0;
+                padding: 1.25rem 2rem; 
+                text-align: left; 
+                width: 100%;
+                border-bottom: 1px solid rgba(139, 148, 158, 0.1);
+                font-size: 1.1rem;
+                transition: all 0.2s ease-in-out; 
+            }
+
+            .main-nav a:last-child {
+                border-bottom: none;
+            }
+            
+            .main-nav a:hover,
+            .main-nav a.active {
+                background-color: rgba(34, 197, 94, 0.1); 
+                color: var(--text-primary);
+                border-left: 4px solid var(--primary-glow); 
+                padding-left: calc(2rem - 4px); 
+            }
+            
+            /* Hamburger Icon Display */
+            .nav-toggle {
+                display: block; 
+            }
+
+            /* Adjust header layout for mobile */
+            .main-header .container {
+                justify-content: space-between;
+            }
         }
     </style>
 </head>
 <body>
     <header class="main-header">
         <div class="container">
-            <a href="#" class="logo">Ky<span>Nex</span></a>
+            <a href="../" class="logo">Kynex<span>.</span></a>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
             <nav class="main-nav">
                 <a href="../">Home</a>
+                <a href="../faq.html">FAQ</a>
                 <a href="../tos/">Terms of Service</a>
                 <a href="index.html" class="active">Privacy Policy</a>
             </nav>
@@ -193,7 +316,7 @@
 
                 <h2>5. Contact Us</h2>
                 <p>
-                    If you have any questions about these policies, please reach out to the bot developers. (You can add your contact method here, e.g., a support server link or email).
+                    If you have any questions about these policies, please reach out to the bot developers by joining the <a href="https://discord.gg/EM4ZSWH2GJ">Support Server</a>.
                 </p>
             </div>
         </div>
@@ -202,5 +325,27 @@
     <footer class="main-footer">
         <p>&copy; 2025 Kynex All rights reserved.</p>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navToggle = document.querySelector('.nav-toggle');
+            const mainNav = document.querySelector('.main-nav');
+            const icon = navToggle.querySelector('i'); // Select the icon element
+
+            navToggle.addEventListener('click', () => {
+                const isOpen = mainNav.classList.toggle('open');
+                navToggle.setAttribute('aria-expanded', isOpen);
+                
+                // Icon swap logic: fa-bars <-> fa-xmark (the close icon)
+                if (isOpen) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-xmark');
+                } else {
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
