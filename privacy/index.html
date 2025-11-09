@@ -270,8 +270,9 @@
             <nav class="main-nav">
                 <a href="../">Home</a>
                 <a href="../faq.html">FAQ</a>
-                <a href="../tos/">Terms of Service</a>
+                <a href="../tos">Terms of Service</a>
                 <a href="index.html" class="active">Privacy Policy</a>
+                <a href="https://discord.gg/EM4ZSWH2GJ">Support</a>
             </nav>
         </div>
     </header>
@@ -280,7 +281,7 @@
         <div class="container">
             <div class="policy-content">
                 <h1>Privacy Policy</h1>
-                <p class="last-updated">Last Updated: October 1, 2025</p>
+                <p class="last-updated">Last Updated: November 8, 2025</p>
                 <p>
                     This Privacy Policy outlines the types of information the Bot collects, how it is used, and your rights regarding this data. Your privacy is important to us, and we are committed to being transparent about our data practices.
                 </p>
@@ -288,30 +289,45 @@
                 <h2>1. Information We Collect and Store</h2>
                 <p>The Bot is designed to collect only the data necessary for its operation:</p>
                 <ul>
-                    <li><strong>Server Configurations:</strong> We store server-specific settings. This includes the server ID, any custom command prefix, and the channel IDs you configure for action logs, error logs, and moderation alerts. This data is stored in JSON files on the server hosting the bot.</li>
-                    <li><strong>User Warnings:</strong> When a moderator uses the <code>/warn</code> command, we store a record associated with the server ID and the user ID. This record includes the warned user's ID, the moderator's ID, the reason for the warning, and a timestamp. This data is stored in a <code>warnings.json</code> file.</li>
-                    <li><strong>Message Content:</strong> The Bot requires access to message content to function. Message content is processed for responding to commands, running the auto-moderation filter, and logging the content of deleted or edited messages to your server's designated log channel.</li>
-                    <li><strong>Logged Actions:</strong> The Bot logs moderation actions and server events (e.g., member join/leave, role updates) to a channel within your server, as configured by you. These logs contain user IDs, and in some cases, message content.</li>
+                    <li><strong>Server-Specific Configurations:</strong> We store server-specific settings, associated with your server's ID, in configuration files (e.g., JSON) on the bot's host server. This includes:
+                        <ul>
+                            <li>Custom command prefix (from <code>prefixes.json</code>).</li>
+                            <li>Channel IDs for action logs, error logs, and auto-moderation alerts (from <code>server_configs.json</code> and <code>alert_channels.json</code>).</li>
+                            <li>The ID of the server's designated "Mute Role" (from <code>mute_role.json</code>).</li>
+                            <li>Automatic punishment rules, such as "kick on 3 warnings" (from <code>server_configs.json</code>).</li>
+                            <li>Role IDs permitted to use sensitive commands like <code>/userinfo</code> (from <code>permission_roles.json</code>).</li>
+                        </ul>
+                    </li>
+                    <li><strong>Auto-Moderation Data:</strong> We store data used by the auto-moderation system:
+                        <ul>
+                            <li>A server-specific list of filtered "bad words" (e.g., in <code>bad_words/YOUR_SERVER_ID.txt</code>).</li>
+                            <li>User-specific infraction counts for tracking repeated auto-moderation offenses (from <code>data/infraction_counts.json</code>).</li>
+                        </ul>
+                    </li>
+                    <li><strong>User Warnings:</strong> When a moderator uses the <code>/warn</code> command, we store a record associated with the server ID and the user ID. This record includes the warned user's ID, the moderator's ID, the reason for the warning, a timestamp, and an optional proof URL (from <code>warnings.json</code>).</li>
+                    <li><strong>Message Content:</strong> The Bot requires access to message content to function. Message content is processed for responding to commands, running the auto-moderation filter (checking against your server's word list), and logging the content of deleted or edited messages to your server's designated log channel.</li>
+                    <li><strong>Logged Actions:</strong> The Bot logs moderation actions (like kicks, bans, warnings) and server events (e.g., member join/leave, role updates) to a channel *within your server*, as configured by you. These logs contain user IDs, and in some cases, message content.</li>
                 </ul>
                 
                 <h2>2. How We Use Your Information</h2>
                 <ul>
-                    <li><strong>To Provide Bot Functionality:</strong> Your data is used to execute commands, enforce auto-moderation rules, and deliver server-specific configurations.</li>
-                    <li><strong>For Moderation and Logging:</strong> To provide server staff with a clear record of moderation actions and significant server events.</li>
+                    <li><strong>To Provide Bot Functionality:</strong> Your data is used to execute commands, enforce server-specific auto-moderation rules, and deliver your server's configurations.</li>
+                    <li><strong>For Moderation and Logging:</strong> To provide server staff with a clear record of moderation actions, warnings, infractions, and significant server events.</li>
                     <li><strong>To Improve the Bot:</strong> In the event of a command error, a log is generated. If the error occurs on a server other than our official development server, a copy of this error log (which includes the server ID and the command used) is sent to a private channel on our development server for debugging and service improvement.</li>
                 </ul>
 
                 <h2>3. Data Storage and Sharing</h2>
                 <ul>
-                    <li>Most data is stored either directly within your Discord server's channels or in JSON files on the secure server hosting the bot.</li>
+                    <li>Most data is stored either directly within your Discord server's channels (as logs) or in JSON/text files on the secure server hosting the bot.</li>
                     <li>We do not sell, rent, or share your data with any third parties.</li>
-                    <li>Access to raw data files (like <code>warnings.json</code>) is restricted to the Bot's developers for maintenance and troubleshooting.</li>
+                    <li>Access to raw data files (like <code>warnings.json</code>, <code>infraction_counts.json</code>, or server configuration files) is restricted to the Bot's developers for maintenance and troubleshooting.</li>
                 </ul>
 
                 <h2>4. Your Rights and Data Control</h2>
                 <ul>
                     <li><strong>Access and Deletion:</strong> Server moderators can view user warnings with the <code>/warnings</code> command and delete specific warnings with the <code>/unwarn</code> command. All logs in your server's channels can be deleted by server staff.</li>
-                    <li><strong>Opting Out:</strong> You can remove your server's data by kicking the Bot. This will prevent any further data collection. You can request immediate deletion of stored configuration and warning data by contacting the developers.</li>
+                    <li><strong>Configuration Control:</strong> Server administrators can manage auto-moderation rules using commands like <code>/addword</code>, <code>/removeword</code>, <code>/listwords</code>, and <code>/warn-actions</code>, and can set up logging channels with <code>/setup-logs</code> and <code>/setup-alert</code>.</li>
+                    <li><strong>Opting Out:</strong> You can remove your server's data by kicking the Bot. This will prevent any further data collection. You can request immediate deletion of all stored configuration and warning data by contacting the developers.</li>
                 </ul>
 
                 <h2>5. Contact Us</h2>
