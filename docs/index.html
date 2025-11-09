@@ -222,7 +222,6 @@
             <nav class="sidebar-nav">
                 <ul>
                     <li><a href="#getting-started">Getting Started</a></li>
-                    <li><a href="#self-hosting">Self-Hosting</a></li>
                 </ul>
 
                 <h4>COMMANDS</h4>
@@ -233,7 +232,6 @@
                 
                 <h4>ADDITIONAL INFO</h4>
                 <ul>
-                    <li><a href="#logging-system">Logging System</a></li>
                     <li><a href="#support">Support</a></li>
                 </ul>
             </nav>
@@ -249,21 +247,6 @@
                     <p>The easiest way to use Kynex is by inviting the publicly hosted version to your Discord server. This requires no setup on your part.</p>
                     <p>Click the link below and select the server you wish to add the bot to. You will need "Manage Server" permissions.</p>
                     <a href="https://discord.com/oauth2/authorize?client_id=1373826543742222377" target="_blank">Invite Kynex to Your Server &rarr;</a>
-                </section>
-                
-                <section id="self-hosting">
-                    <h2>Self-Hosting Guide</h2>
-                    <p>For advanced users who want full control and customization, self-hosting is the best option. Follow these steps to get your own instance running.</p>
-                    <ol>
-                        <li><strong>Download Files:</strong> Get the latest source code by <a href="../Kynex.zip" download>downloading the ZIP file</a>.</li>
-                        <li><strong>Install Dependencies:</strong> After extracting the files, open a terminal in the project's root directory and run the command:
-                            <pre><code>pip install -r requirements.txt</code></pre>
-                        </li>
-                        <li><strong>Configure Token:</strong> Open a file named <code>config.json</code> in the root directory and add your bot token like this: <code>"BOT_TOKEN": "YOUR_BOT_TOKEN",</code>. Alternatively, you can create an <code>.env</code> file and place the bot Token inside it like in <code>config.json</code>.</li>
-                        <li><strong>Run the Bot:</strong> Start the bot using Python:
-                            <pre><code>python utility_bot.py</code></pre>
-                        </li>
-                    </ol>
                 </section>
 
                 <section id="commands-moderation">
@@ -319,14 +302,6 @@
                     <p>Checks the bot's response time and API latency.</p>
                     <pre><code>/ping</code></pre>
                 </section>
-
-                <section id="logging-system">
-                    <h2>Logging System</h2>
-                    <p>If you choose not to use the optional logging features, you may see the following message upon startup. This is purely informational and can be safely ignored.</p>
-                    <div class="note">
-                        <p><code>Error loading LoggingCog: Extension 'logging_cog' not found.</code> This does not affect the bot's core functionality.</p>
-                    </div>
-                </section>
                 
                 <section id="support">
                     <h2>Support</h2>
@@ -369,24 +344,32 @@
         });
 
         const sections = document.querySelectorAll('main section');
-        const navLinks = document.querySelectorAll('.sidebar-nav a');
+        const navLinks = document.querySelectorAll('.sidebar-nav a');
 
-        mainContent.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (mainContent.scrollTop >= sectionTop - 100) {
-                    current = section.getAttribute('id');
-                }
-            });
+        mainContent.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (mainContent.scrollTop >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
 
-            navLinks.forEach(a => {
-                a.classList.remove('active');
-                if (a.getAttribute('href') === `#${current}`) {
-                    a.classList.add('active');
-                }
-            });
-        });
+            const scrollBottom = mainContent.scrollTop + mainContent.clientHeight;
+            const totalScrollHeight = mainContent.scrollHeight;
+
+            if (scrollBottom >= totalScrollHeight - 5) {
+                current = sections[sections.length - 1].getAttribute('id');
+            }
+
+            navLinks.forEach(a => {
+                a.classList.remove('active');
+                if (a.getAttribute('href') === `#${current}`) {
+                    a.classList.add('active');
+                }
+            });
+        });
     </script>
 </body>
 </html>
